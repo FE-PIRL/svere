@@ -1,0 +1,1 @@
+export { reactify } from './Adapter';
