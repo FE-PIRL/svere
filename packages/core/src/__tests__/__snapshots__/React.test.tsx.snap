@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React reactify 1`] = `
+<div>
+  <span>
+    <main
+      class="svelte-1tky8bj"
+    >
+      <h1
+        class="svelte-1tky8bj"
+      >
+        Hello 
+        ben
+        !
+      </h1>
+       
+      <p>
+        Visit the 
+        <a
+          href="https://svelte.dev/tutorial"
+        >
+          Svelte tutorial
+        </a>
+         to learn how to build Svelte apps.
+      </p>
+    </main>
+  </span>
+</div>
+`;
