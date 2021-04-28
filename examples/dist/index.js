@@ -60,10 +60,34 @@
         if (text.wholeText !== data)
             text.data = data;
     }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
 
     let current_component;
     function set_current_component(component) {
         current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
     }
 
     const dirty_components = [];
@@ -327,11 +351,13 @@
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	const dispatch = createEventDispatcher();
     	let { name } = $$props;
     	let count = 0;
 
     	function handleClick(event) {
     		$$invalidate(1, count += 1);
+    		dispatch("someEvent", count);
     	}
 
     	$$self.$$set = $$props => {

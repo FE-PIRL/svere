@@ -19,3 +19,15 @@ test('count increments when button is clicked', async () => {
 
   expect(button).toHaveTextContent('count: 1');
 })
+
+
+test('listen custom event', async () => {
+  const results = render(App, { props: { name: "world" } });
+  const button = results.getByText('count: 0');
+
+  results.component.$on('someEvent', e=>{
+    expect(e.detail).toBe(1);
+  })
+
+  await fireEvent.click(button);
+})

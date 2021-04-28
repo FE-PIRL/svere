@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 	export let name: string;
 
 	let count = 0;
 
 	function handleClick(event) {
 		count += 1;
+		dispatch('someEvent', count);
 	}
 </script>
 

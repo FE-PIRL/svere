@@ -19,7 +19,7 @@ describe("React", () => {
     container = null;
   });
 
-  it("reactify", async () => {
+  it("should render", async () => {
     const ReactComponent = reactify(SvelteComponent);
 
     // render the component
@@ -27,15 +27,48 @@ describe("React", () => {
       ReactDOM.render(<ReactComponent name={name} />, container);
     });
 
-    const button = container.querySelector('button');
-    expect(button.textContent).toBe('count: 0');
+    expect(container).toMatchSnapshot();
+  });
+
+  it("count increments when button is clicked", async () => {
+    const ReactComponent = reactify(SvelteComponent);
+
+    // render the component
+    act(() => {
+      ReactDOM.render(<ReactComponent name={name} />, container);
+    });
+
+    const button = container.querySelector("button");
+    expect(button.textContent).toBe("count: 0");
 
     // Test second render and componentDidUpdate
     await act(async () => {
-      button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(button.textContent).toBe('count: 1');
-    expect(container).toMatchSnapshot();
+    expect(button.textContent).toBe("count: 1");
+  });
+
+  it("listen custom event", async () => {
+    const ReactComponent = reactify(SvelteComponent);
+
+    const handleSomeEvent = (e: any) => {
+      expect(e.detail).toBe(1);
+    };
+
+    // render the component
+    await act(async () => {
+      ReactDOM.render(
+        <ReactComponent name={name} onSomeEvent={handleSomeEvent} />,
+        container
+      );
+    });
+
+    const button = container.querySelector("button");
+
+    // Test second render and componentDidUpdate
+    await act(async () => {
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
   });
 });
