@@ -1,1 +1,1 @@
-export { reactify } from './Adapter';
+export { reactify } from "./Adapter";

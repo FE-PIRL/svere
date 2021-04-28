@@ -1,4 +1,4 @@
-import { render } from "@testing-library/svelte";
+import { render, fireEvent } from "@testing-library/svelte";
 import App from "../Component.svelte";
 
 test("should render", () => {
@@ -6,3 +6,16 @@ test("should render", () => {
 
   expect(() => results.getByText("Hello world!")).not.toThrow();
 });
+
+
+// Note: This is as an async test as we are using `fireEvent`
+test('count increments when button is clicked', async () => {
+  const results = render(App, { props: { name: "world" } });
+  const button = results.getByText('count: 0');
+
+  // Using await when firing events is unique to the svelte testing library because
+  // we have to wait for the next `tick` so that Svelte flushes all pending state changes.
+  await fireEvent.click(button);
+
+  expect(button).toHaveTextContent('count: 1');
+})

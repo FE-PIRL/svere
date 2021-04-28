@@ -42,6 +42,10 @@
     function space() {
         return text(' ');
     }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -272,7 +276,11 @@
     	let t1;
     	let t2;
     	let t3;
-    	let p;
+    	let button;
+    	let t4;
+    	let t5;
+    	let mounted;
+    	let dispose;
 
     	return {
     		c() {
@@ -282,8 +290,9 @@
     			t1 = text(/*name*/ ctx[0]);
     			t2 = text("!");
     			t3 = space();
-    			p = element("p");
-    			p.innerHTML = `Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.`;
+    			button = element("button");
+    			t4 = text("count: ");
+    			t5 = text(/*count*/ ctx[1]);
     			attr(h1, "class", "svelte-1tky8bj");
     			attr(main, "class", "svelte-1tky8bj");
     		},
@@ -294,27 +303,42 @@
     			append(h1, t1);
     			append(h1, t2);
     			append(main, t3);
-    			append(main, p);
+    			append(main, button);
+    			append(button, t4);
+    			append(button, t5);
+
+    			if (!mounted) {
+    				dispose = listen(button, "click", /*handleClick*/ ctx[2]);
+    				mounted = true;
+    			}
     		},
     		p(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data(t1, /*name*/ ctx[0]);
+    			if (dirty & /*count*/ 2) set_data(t5, /*count*/ ctx[1]);
     		},
     		i: noop,
     		o: noop,
     		d(detaching) {
     			if (detaching) detach(main);
+    			mounted = false;
+    			dispose();
     		}
     	};
     }
 
     function instance($$self, $$props, $$invalidate) {
     	let { name } = $$props;
+    	let count = 0;
+
+    	function handleClick(event) {
+    		$$invalidate(1, count += 1);
+    	}
 
     	$$self.$$set = $$props => {
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     	};
 
-    	return [name];
+    	return [name, count, handleClick];
     }
 
     class Component extends SvelteComponent {

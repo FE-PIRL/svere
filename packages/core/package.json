@@ -7,7 +7,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,ts,tsx}\""
   },
   "files": [
     "dist"
@@ -35,6 +36,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "jest": "^26.6.3",
+    "prettier": "^2.2.1",
     "rollup": "^2.3.4",
     "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.0.0",
