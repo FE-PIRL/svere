@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React custom wrapper 1`] = `
+<div>
+  <section
+    class="section-css"
+    id="svelte-react-1"
+    style="border: 1px solid gray;"
+  >
+    <main
+      class="svelte-1tky8bj"
+    >
+      <h1
+        class="svelte-1tky8bj"
+      >
+        Hello 
+        ben
+        !
+      </h1>
+       
+      <button>
+        count: 
+        0
+      </button>
+    </main>
+  </section>
+</div>
+`;

@@ -1,28 +1,33 @@
 import React, { useRef, useEffect, useState } from "react";
 
-// dynamically create a react element by a svelte element
-export const reactify = (Component: any, style = {}, tag = "span") => (props: {
-  [x: string]: any;
-}) => {
-  const container = useRef(null);
-  const component = useRef(null);
+const defaultWrapperProps = {
+  element: "div",
+  id: "svelte-react-wrapper",
+};
+
+export const reactify = (
+  Component: any,
+  wrapperProps?: WrapperProps
+) => (props: { [x: string]: any }) => {
+  const container = useRef<HTMLElement>(null);
+  const component = useRef<HTMLElement | null>(null);
 
   const [mounted, setMount] = useState(false);
 
   useEffect(() => {
-    const eventRegex = /on([A-Z]{1,}[a-zA-Z]*)/;
+    const onRegex = /on([A-Z]{1,}[a-zA-Z]*)/;
     const watchRegex = /watch([A-Z]{1,}[a-zA-Z]*)/;
 
     component.current = new Component({ target: container.current, props });
 
     let watchers: any[][] = [];
     for (const key in props) {
-      const eventMatch = key.match(eventRegex);
+      const onMatch = key.match(onRegex);
       const watchMatch = key.match(watchRegex);
 
-      if (eventMatch && typeof props[key] === "function") {
+      if (onMatch && typeof props[key] === "function") {
         ((component.current as unknown) as Component)?.$on(
-          `${eventMatch[1][0].toLowerCase()}${eventMatch[1].slice(1)}`,
+          `${onMatch[1][0].toLowerCase()}${onMatch[1].slice(1)}`,
           props[key]
         );
       }
@@ -42,9 +47,10 @@ export const reactify = (Component: any, style = {}, tag = "span") => (props: {
           watchers.forEach(([name, callback]) => {
             const index = ((component.current as unknown) as Component)?.$$
               .props[name];
-            callback(
-              ((component.current as unknown) as Component)?.$$.ctx[index]
-            );
+            const prop = ((component.current as unknown) as Component)?.$$.ctx[
+              index
+            ];
+            prop && callback(prop);
           });
           update.apply(null, arguments);
         };
@@ -65,5 +71,16 @@ export const reactify = (Component: any, style = {}, tag = "span") => (props: {
     ((component.current as unknown) as Component)?.$set(props);
   }, [props]);
 
-  return React.createElement(tag, { ref: container, style });
+  if (!wrapperProps) {
+    wrapperProps = defaultWrapperProps;
+  } else {
+    wrapperProps = Object.assign({}, defaultWrapperProps, wrapperProps);
+  }
+
+  return React.createElement(wrapperProps.element, {
+    ref: container,
+    id: wrapperProps.id,
+    className: wrapperProps.className,
+    style: { ...wrapperProps.styles },
+  });
 };

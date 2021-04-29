@@ -59,7 +59,7 @@ describe("React", () => {
     // render the component
     await act(async () => {
       ReactDOM.render(
-        <ReactComponent name={name} onSomeEvent={handleSomeEvent} />,
+        <ReactComponent name={name} watchAbc={handleSomeEvent} />,
         container
       );
     });
@@ -70,5 +70,24 @@ describe("React", () => {
     await act(async () => {
       button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
+  });
+
+  it("custom wrapper", async () => {
+    const wrapperProps = {
+      element: "section",
+      className: "section-css",
+      id:'svelte-react-1',
+      styles: {
+        border: "1px solid gray",
+      },
+    };
+    const ReactComponent = reactify(SvelteComponent, wrapperProps);
+
+    // render the component
+    act(() => {
+      ReactDOM.render(<ReactComponent name={name} />, container);
+    });
+
+    expect(container).toMatchSnapshot();
   });
 });

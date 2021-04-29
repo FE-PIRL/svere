@@ -21,3 +21,10 @@ interface Component {
     head?: string;
   };
 }
+
+type WrapperProps = {
+  element?: string | FunctionComponent<{}> | ComponentClass<{}, any>;
+  id?: string;
+  className?: string;
+  styles?: {};
+};
