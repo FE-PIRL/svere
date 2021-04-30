@@ -1,1 +1,1 @@
-export { reactify } from "./Adapter";
+export { toReact, toVue } from "./Adapter";

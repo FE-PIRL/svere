@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { reactify } from "../../src/index";
+import { toReact } from "../../src/index";
 import SvelteComponent from "../../../../examples/dist";
 import { act } from "react-dom/test-utils";
 
@@ -20,7 +20,7 @@ describe("React", () => {
   });
 
   it("should render", async () => {
-    const ReactComponent = reactify(SvelteComponent);
+    const ReactComponent = toReact(SvelteComponent);
 
     // render the component
     act(() => {
@@ -31,7 +31,7 @@ describe("React", () => {
   });
 
   it("count increments when button is clicked", async () => {
-    const ReactComponent = reactify(SvelteComponent);
+    const ReactComponent = toReact(SvelteComponent);
 
     // render the component
     act(() => {
@@ -50,7 +50,7 @@ describe("React", () => {
   });
 
   it("listen custom event", async () => {
-    const ReactComponent = reactify(SvelteComponent);
+    const ReactComponent = toReact(SvelteComponent);
 
     const handleSomeEvent = (e: any) => {
       expect(e.detail).toBe(1);
@@ -76,12 +76,12 @@ describe("React", () => {
     const wrapperProps = {
       element: "section",
       className: "section-css",
-      id:'svelte-react-1',
+      id: "svelte-react-1",
       styles: {
         border: "1px solid gray",
       },
     };
-    const ReactComponent = reactify(SvelteComponent, wrapperProps);
+    const ReactComponent = toReact(SvelteComponent, wrapperProps);
 
     // render the component
     act(() => {

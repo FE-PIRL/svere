@@ -6,7 +6,7 @@ interface ComponentOptions {
   intro?: boolean;
 }
 
-interface Component {
+interface SvelteComponent {
   new (options: ComponentOptions): any;
   $$: any;
   // client-side methods
