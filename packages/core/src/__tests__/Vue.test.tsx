@@ -45,7 +45,7 @@ describe("Vue", () => {
     };
     const wrapper = shallowMount(VueComponent({ name }), {
       listeners: {
-        'watch:name': handleSomeEvent,
+        "watch:name": handleSomeEvent,
       },
     });
 

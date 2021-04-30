@@ -6,6 +6,14 @@ const defaultWrapperProps = {
   id: "svelte-wrapper",
 };
 
+const _resolveWrapperProps = (wrapperProps?: WrapperProps) => {
+  if (!wrapperProps) {
+    return defaultWrapperProps;
+  } else {
+    return Object.assign({}, defaultWrapperProps, wrapperProps);
+  }
+};
+
 export const toReact = (
   Component: any,
   wrapperProps?: WrapperProps
@@ -72,11 +80,7 @@ export const toReact = (
     ((component.current as unknown) as SvelteComponent)?.$set(props);
   }, [props]);
 
-  if (!wrapperProps) {
-    wrapperProps = defaultWrapperProps;
-  } else {
-    wrapperProps = Object.assign({}, defaultWrapperProps, wrapperProps);
-  }
+  wrapperProps = _resolveWrapperProps(wrapperProps);
 
   return React.createElement(wrapperProps.element, {
     ref: container,
@@ -89,11 +93,7 @@ export const toReact = (
 export const toVue = (Component: any, wrapperProps?: WrapperProps) => (props: {
   [x: string]: any;
 }) => {
-  if (!wrapperProps) {
-    wrapperProps = defaultWrapperProps;
-  } else {
-    wrapperProps = Object.assign({}, defaultWrapperProps, wrapperProps);
-  }
+  wrapperProps = _resolveWrapperProps(wrapperProps);
 
   return Vue.component(wrapperProps.id as string, {
     render(createElement) {
@@ -114,12 +114,12 @@ export const toVue = (Component: any, wrapperProps?: WrapperProps) => (props: {
         props,
       });
 
-      let watchers: (string | Function | Function[])[][] = [];
+      let watchers: any[][] = [];
 
       for (const key in this.$listeners) {
         (this as any).comp.$on(key, this.$listeners[key]);
-        const watchRe = /watch:([^]+)/;
 
+        const watchRe = /watch:([^]+)/;
         const watchMatch = key.match(watchRe);
 
         if (watchMatch && typeof this.$listeners[key] === "function") {
@@ -136,10 +136,8 @@ export const toVue = (Component: any, wrapperProps?: WrapperProps) => (props: {
 
         (this as any).comp.$$.update = function () {
           watchers.forEach(([name, callback]) => {
-            // @ts-ignore
             const index = comp.$$.props[name];
             const prop = comp.$$.ctx[index];
-            // @ts-ignore
             prop && callback(prop);
           });
           update.apply(null, arguments);
@@ -147,7 +145,7 @@ export const toVue = (Component: any, wrapperProps?: WrapperProps) => (props: {
       }
     },
     updated() {
-      (this as any).comp.$set(this.$attrs);
+      (this as any).comp.$set(props);
     },
     destroyed() {
       (this as any).comp.$destroy();
