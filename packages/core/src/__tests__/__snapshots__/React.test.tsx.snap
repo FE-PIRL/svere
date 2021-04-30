@@ -26,3 +26,28 @@ exports[`React custom wrapper 1`] = `
   </section>
 </div>
 `;
+
+exports[`React should render 1`] = `
+<div>
+  <div
+    id="svelte-wrapper"
+  >
+    <main
+      class="svelte-1tky8bj"
+    >
+      <h1
+        class="svelte-1tky8bj"
+      >
+        Hello 
+        ben
+        !
+      </h1>
+       
+      <button>
+        count: 
+        0
+      </button>
+    </main>
+  </div>
+</div>
+`;

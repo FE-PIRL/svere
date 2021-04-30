@@ -357,6 +357,7 @@
 
     	function handleClick(event) {
     		$$invalidate(1, count += 1);
+    		$$invalidate(0, name = "yasin");
     		dispatch("someEvent", count);
     	}
 

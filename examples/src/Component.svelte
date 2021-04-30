@@ -7,6 +7,7 @@
 
 	function handleClick(event) {
 		count += 1;
+		name = 'yasin';
 		dispatch('someEvent', count);
 	}
 </script>

@@ -49,17 +49,42 @@ describe("React", () => {
     expect(button.textContent).toBe("count: 1");
   });
 
+  it("watch internal props changes and execute the callback", async () => {
+    const ReactComponent = toReact(SvelteComponent);
+
+    const handleSomeEvent = (name: string) => {
+      //console.log(name)
+      expect(name).toBe("yasin");
+    };
+
+    // render the component
+    await act(async () => {
+      ReactDOM.render(
+        <ReactComponent name={name} watchName={handleSomeEvent} />,
+        container
+      );
+    });
+
+    const button = container.querySelector("button");
+
+    // Test second render and componentDidUpdate
+    await act(async () => {
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+  });
+
   it("listen custom event", async () => {
     const ReactComponent = toReact(SvelteComponent);
 
     const handleSomeEvent = (e: any) => {
+      //console.log(e.detail)
       expect(e.detail).toBe(1);
     };
 
     // render the component
     await act(async () => {
       ReactDOM.render(
-        <ReactComponent name={name} watchAbc={handleSomeEvent} />,
+        <ReactComponent name={name} onSomeEvent={handleSomeEvent} />,
         container
       );
     });

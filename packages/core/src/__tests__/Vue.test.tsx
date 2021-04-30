@@ -1,4 +1,3 @@
-//import Vue  from 'vue';
 import { shallowMount } from "@vue/test-utils";
 
 import { toVue } from "../../src/index";
@@ -26,9 +25,49 @@ describe("Vue", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("count increments when button is clicked", async () => {});
+  it("count increments when button is clicked", async () => {
+    const VueComponent = toVue(SvelteComponent);
 
-  it("listen custom event", async () => {});
+    const wrapper = shallowMount(VueComponent({ name }));
+    expect(wrapper.find("button").text()).toBe("count: 0");
+
+    await wrapper.find("button").trigger("click");
+
+    expect(wrapper.find("button").text()).toBe("count: 1");
+  });
+
+  it("watch internal props changes and execute the callback", async () => {
+    const VueComponent = toVue(SvelteComponent);
+
+    const handleSomeEvent = (name: string) => {
+      //console.log(name)
+      expect(name).toBe("yasin");
+    };
+    const wrapper = shallowMount(VueComponent({ name }), {
+      listeners: {
+        'watch:name': handleSomeEvent,
+      },
+    });
+
+    await wrapper.find("button").trigger("click");
+  });
+
+  it("listen custom event", async () => {
+    const VueComponent = toVue(SvelteComponent);
+
+    const handleSomeEvent = (e: any) => {
+      //console.log(e.detail);
+      expect(e.detail).toBe(1);
+    };
+
+    const wrapper = shallowMount(VueComponent({ name }), {
+      listeners: {
+        someEvent: handleSomeEvent,
+      },
+    });
+
+    await wrapper.find("button").trigger("click");
+  });
 
   it("custom wrapper", async () => {
     const wrapperProps = {
