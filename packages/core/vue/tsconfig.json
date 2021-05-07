@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDirs": [".","../"],
     "outDir": "dist",
     "module": "esnext",
     "target": "es5",
@@ -25,5 +26,5 @@
     "jest",
     "dist",
   ],
-  "include": ["src/**/*","../types/**/*"]
+  "include": ["src/**/*","../types/**/*", "../utils/**/*"]
 }

@@ -1,20 +1,8 @@
 import Vue from "vue";
-
-const defaultWrapperProps = {
-    element: "div",
-    id: "svelte-wrapper",
-};
-
-const _resolveWrapperProps = (wrapperProps?: WrapperProps) => {
-    if (!wrapperProps) {
-        return defaultWrapperProps;
-    } else {
-        return Object.assign({}, defaultWrapperProps, wrapperProps);
-    }
-};
+import resolveWrapperProps from "../../utils";
 
 export default (Component: any, wrapperProps?: WrapperProps) => {
-    wrapperProps = _resolveWrapperProps(wrapperProps);
+    wrapperProps = resolveWrapperProps(wrapperProps);
 
     return Vue.component(wrapperProps.id as string, {
         render(createElement) {

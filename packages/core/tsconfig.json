@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDirs": [".","../"],
+    "rootDir": ".",
     "outDir": "dist",
     "module": "esnext",
     "target": "es5",
@@ -20,12 +20,12 @@
     "experimentalDecorators": true,
     "strict": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
   },
   "exclude": [
     "node_modules",
     "jest",
-    "dist"
+    "dist",
   ],
-  "include": ["src/**/*","../types/**/*", "../utils/**/*"]
+  "include": ["**/*.ts"]
 }
