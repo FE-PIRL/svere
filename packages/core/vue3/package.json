@@ -1,0 +1,46 @@
+{
+  "name": "serve-vue3",
+  "version": "1.0.0",
+  "description": "svelte adapter for vue3",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c",
+    "prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,ts,tsx}\""
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "wangbingying",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.0.11",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "vue": "^3.0.11"
+  },
+  "devDependencies": {
+    "@jest/reporters": "^26.6.2",
+    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@types/jest": "^26.0.22",
+    "@vue/test-utils": "^2.0.0-rc.6",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "rollup": "^2.3.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.0.0",
+    "svelte-check": "^1.0.0",
+    "svelte-jester": "^1.1.5",
+    "svelte-preprocess": "^4.0.0",
+    "ts-jest": "^26.5.5",
+    "tslib": "^2.2.0"
+  }
+}

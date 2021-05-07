@@ -13,17 +13,14 @@ const production = !process.env.ROLLUP_WATCH;
 export default {
 	input: ['src/index.ts'],
 	output: [
-		{ file: pkg.module, 'format': 'es' },
-		{ file: pkg.main, 'format': 'umd', name },
+		{ file: pkg.module, 'format': 'es', globals: { "vue": "Vue" } },
+		{ file: pkg.main, 'format': 'umd', name, globals: { "vue": "Vue" } },
 	],
-	external: ["react", "vue"],
+	external: ["vue"],
 	plugins: [
 		typescript({ sourceMap: !production, exclude:["src/__tests__/**/*"] }),
 		commonjs({
-			include: /node_modules/,
-			namedExports: {
-				'react': ["useRef", "useState", "useEffect"],
-			}
+			include: /node_modules/
 		}),
 		resolve({
 			browser: true

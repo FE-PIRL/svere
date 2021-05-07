@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { toReact } from "../../src/index";
-import SvelteComponent from "../../../../examples/dist";
+import SvelteComponent from "../../../../../examples/dist";
 import { act } from "react-dom/test-utils";
 
 describe("React", () => {
@@ -101,7 +101,7 @@ describe("React", () => {
     const wrapperProps = {
       element: "section",
       className: "section-css",
-      id: "svelte-react-1",
+      id: "svelte-react",
       styles: {
         border: "1px solid gray",
       },

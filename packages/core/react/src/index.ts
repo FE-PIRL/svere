@@ -1,0 +1,1 @@
+export { toReact } from "./Adapter";
