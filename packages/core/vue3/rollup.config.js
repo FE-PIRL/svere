@@ -16,7 +16,7 @@ export default {
 		{ file: pkg.module, 'format': 'es',globals: { "vue": "Vue" } },
 		{ file: pkg.main, 'format': 'umd', name,globals: { "vue": "Vue" } },
 	],
-	external: ["react", "vue"],
+	external: ["vue"],
 	plugins: [
 		typescript({ sourceMap: !production, exclude:["src/__tests__/**/*"] }),
 		commonjs({
@@ -27,6 +27,6 @@ export default {
 		}),
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser({ format: { comments: false } })
 	],
 };

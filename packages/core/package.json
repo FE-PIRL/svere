@@ -1,0 +1,11 @@
+{
+  "name": "serve-core",
+  "version": "1.0.0",
+  "description": "svelte adapter for react/vue/vue3",
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "wangbingying",
+  "license": "MIT"
+}

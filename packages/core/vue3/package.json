@@ -2,18 +2,12 @@
   "name": "serve-vue3",
   "version": "1.0.0",
   "description": "svelte adapter for vue3",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "module": "../dist/vue3.mjs",
+  "main": "../dist/vue3.js",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
     "prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,ts,tsx}\""
-  },
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": "./dist/index.js"
   },
   "keywords": [],
   "author": "wangbingying",

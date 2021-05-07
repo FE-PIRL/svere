@@ -2,18 +2,12 @@
   "name": "serve-react",
   "version": "1.0.0",
   "description": "svelte adapter for react",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "module": "../dist/react.mjs",
+  "main": "../dist/react.js",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
     "prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,ts,tsx}\""
-  },
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": "./dist/index.js"
   },
   "keywords": [],
   "author": "wangbingying",

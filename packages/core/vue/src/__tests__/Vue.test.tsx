@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 
-import { toVue } from "../../src/index";
+import toVue from "../../src/index";
 import SvelteComponent from "../../../../../examples/dist";
 
 describe("Vue", () => {

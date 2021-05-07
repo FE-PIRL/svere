@@ -4,7 +4,7 @@ exports[`React custom wrapper 1`] = `
 <div>
   <section
     class="section-css"
-    id="svelte-react-1"
+    id="svelte-react"
     style="border: 1px solid gray;"
   >
     <main

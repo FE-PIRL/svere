@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 
-import { toVue3 } from "../../src/index";
+import toVue3 from "../../src/index";
 import SvelteComponent from "../../../../../examples/dist";
 
 describe("Vue", () => {
