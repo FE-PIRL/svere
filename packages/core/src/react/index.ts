@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import resolveWrapperProps from "../../utils";
+import React, { useRef, useEffect, useState }  from "react";
+import resolveWrapperProps from "../helpers";
 
 export default (Component: any, wrapperProps?: WrapperProps) => (props: {
   [x: string]: any;
@@ -22,8 +22,8 @@ export default (Component: any, wrapperProps?: WrapperProps) => (props: {
 
       if (onMatch && typeof props[key] === "function") {
         ((component.current as unknown) as SvelteComponent)?.$on(
-          `${onMatch[1][0].toLowerCase()}${onMatch[1].slice(1)}`,
-          props[key]
+            `${onMatch[1][0].toLowerCase()}${onMatch[1].slice(1)}`,
+            props[key]
         );
       }
 
@@ -37,14 +37,14 @@ export default (Component: any, wrapperProps?: WrapperProps) => (props: {
 
     if (watchers.length) {
       const update = ((component.current as unknown) as SvelteComponent)?.$$
-        .update;
+          .update;
       if (update) {
         ((component.current as unknown) as SvelteComponent).$$.update = function () {
           watchers.forEach(([name, callback]) => {
             const index = ((component.current as unknown) as SvelteComponent)
-              ?.$$.props[name];
+                ?.$$.props[name];
             const prop = ((component.current as unknown) as SvelteComponent)?.$$
-              .ctx[index];
+                .ctx[index];
             prop && callback(prop);
           });
           update.apply(null, arguments);

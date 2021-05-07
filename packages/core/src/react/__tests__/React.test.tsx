@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import toReact from "../../src/index";
+import toReact from "../index";
 import SvelteComponent from "../../../../../examples/dist";
 import { act } from "react-dom/test-utils";
 

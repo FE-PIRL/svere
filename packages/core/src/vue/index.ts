@@ -1,5 +1,5 @@
 import Vue from "vue";
-import resolveWrapperProps from "../../utils";
+import resolveWrapperProps from "../helpers";
 
 export default (Component: any, wrapperProps?: WrapperProps) => {
     wrapperProps = resolveWrapperProps(wrapperProps);

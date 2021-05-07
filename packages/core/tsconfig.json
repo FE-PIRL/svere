@@ -27,5 +27,8 @@
     "jest",
     "dist",
   ],
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "src/types/index.d.ts"
+  ]
 }

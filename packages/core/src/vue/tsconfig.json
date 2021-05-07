@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "jsx": "react",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
@@ -20,12 +19,14 @@
     "experimentalDecorators": true,
     "strict": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types","../types"]
   },
   "exclude": [
     "node_modules",
     "jest",
-    "dist"
+    "dist",
   ],
-  "include": ["src/**/*","../types/**/*", "../utils/**/*"]
+  "include": ["./**/*","../types/**/*",
+    "../helpers/**/*"
+  ]
 }

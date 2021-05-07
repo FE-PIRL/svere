@@ -11,10 +11,10 @@ const name = pkg.name
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: ['src/index.ts'],
+	input: ['./index.ts'],
 	output: [
-		{ file: pkg.module, 'format': 'es',globals: { "vue": "Vue" } },
-		{ file: pkg.main, 'format': 'umd', name,globals: { "vue": "Vue" } },
+		{ file: pkg.module, 'format': 'es', globals: { "vue": "Vue" } },
+		{ file: pkg.main, 'format': 'umd', name, globals: { "vue": "Vue" } },
 	],
 	external: ["vue"],
 	plugins: [
@@ -23,9 +23,9 @@ export default {
 			types: ["../types"],
 			include: [
 				'./**/*.ts',
-				'../utils/**/*.ts'
+				'../helpers/**/*.ts'
 			],
-			exclude:["src/__tests__/**/*"]
+			exclude:["./__tests__/**/*"]
 		}),
 		commonjs({
 			include: /node_modules/
