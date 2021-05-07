@@ -25,10 +25,10 @@ describe("Vue", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
- it("count increments when button is clicked", async () => {
+  it("count increments when button is clicked", async () => {
     const VueComponent = toVue(SvelteComponent);
 
-   const wrapper = shallowMount(VueComponent,{propsData: { name }});
+    const wrapper = shallowMount(VueComponent,{propsData: { name }});
     expect(wrapper.find("button").text()).toBe("count: 0");
 
     await wrapper.find("button").trigger("click");

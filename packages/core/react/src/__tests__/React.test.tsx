@@ -60,8 +60,8 @@ describe("React", () => {
     // render the component
     await act(async () => {
       ReactDOM.render(
-        <ReactComponent name={name} watchName={handleSomeEvent} />,
-        container
+          <ReactComponent name={name} watchName={handleSomeEvent} />,
+          container
       );
     });
 
@@ -84,8 +84,8 @@ describe("React", () => {
     // render the component
     await act(async () => {
       ReactDOM.render(
-        <ReactComponent name={name} onSomeEvent={handleSomeEvent} />,
-        container
+          <ReactComponent name={name} onSomeEvent={handleSomeEvent} />,
+          container
       );
     });
 

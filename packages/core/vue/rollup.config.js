@@ -18,7 +18,7 @@ export default {
 	],
 	external: ["vue"],
 	plugins: [
-		typescript({ sourceMap: !production, exclude:["src/__tests__/**/*"] }),
+		typescript({ sourceMap: !production, "types": ["../types"], exclude:["src/__tests__/**/*"] }),
 		commonjs({
 			include: /node_modules/
 		}),

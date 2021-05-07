@@ -8,7 +8,6 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "jsx": "react",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
@@ -26,5 +25,5 @@
     "jest",
     "dist",
   ],
-  "include": ["src/**/*"]
+  "include": ["src/**/*","../types/**/*"]
 }
