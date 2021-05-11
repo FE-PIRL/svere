@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "rootDir": ".",
     "outDir": "dist",
     "module": "esnext",

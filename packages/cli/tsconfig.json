@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "outDir": "build",
+    "strict": false,
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "build/types",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "paths": {
+      "@svere/core": ["../core/src"]
+    }
+  },
+  "references": [{ "path": "../core" }],
+  "ts-node": {
+    "typeCheck": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
