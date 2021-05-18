@@ -83,25 +83,25 @@ class Logger {
 
   /** emit messages only visible when --debug is passed */
   public debug(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "snowpack";
+    const name = (options && options.name) || "svere";
     this.log({ level: "debug", name, message, task: options?.task });
   }
 
   /** emit general info */
   public info(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "snowpack";
+    const name = (options && options.name) || "svere";
     this.log({ level: "info", name, message, task: options?.task });
   }
 
   /** emit non-fatal warnings */
   public warn(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "snowpack";
+    const name = (options && options.name) || "svere";
     this.log({ level: "warn", name, message, task: options?.task });
   }
 
   /** emit critical error messages */
   public error(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "snowpack";
+    const name = (options && options.name) || "svere";
     this.log({ level: "error", name, message, task: options?.task });
   }
 

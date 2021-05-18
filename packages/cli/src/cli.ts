@@ -5,7 +5,7 @@ import { logger } from "./helpers/logger";
 
 const pkg = require(path.join(__dirname, "../package.json"));
 const version = pkg.version;
-const templates = ["svelte-typescript"];
+const templates = ["default"];
 
 export async function main() {
   program
@@ -26,17 +26,12 @@ export async function main() {
   program
     .command("create [targetDir]")
     .description(
-      'create a new project. If you do not specify targetDir, "svelte-typescript" will be used'
+      'create a new project. If you do not specify targetDir, "svere-component" will be used'
     )
     .option(
       "-t, --template <string>",
       `template for new project. ${JSON.stringify(templates)}`,
-      "svelte-typescript"
-    )
-    .option(
-      "-ts, --typescript",
-      "enable typescript support for svelte !!!EXPERIMENTAL!!!",
-      false
+      "default"
     )
     .option(
       "-pm, --packageManager <string>",
