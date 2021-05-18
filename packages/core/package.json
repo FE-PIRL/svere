@@ -1,5 +1,5 @@
 {
-  "name": "serve-core",
+  "name": "@svere/core",
   "version": "1.0.0",
   "description": "svelte adapter for react/vue/vue3",
   "files": [
