@@ -61,7 +61,7 @@ toReact(Component: SvelteComponent, wrapperProps?: WrapperProps) : Component
 - `wrapperProps` (optional) should be an object contains wrapper `element`, `id`, `className` and `styles`.
    - `element` : all component have a base wrapper element, by default this is a `<div>` but you can pass in a string to customise this behaviour (eg: 'span', 'li', etc.)
    - `id` : add an id attribute to the base wrapper element, by default this is `svelte-wrapper`.
-   - `className` : add a class attribute to the base wrapper element.
+   - `className` : add a class attribute to the base wrapper element which you can define styles in your css files.
    - `styles` : add an inline styles attribute to the base wrapper element which can override the `className` attribute.
   
 # Cli
