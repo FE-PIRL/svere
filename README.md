@@ -1,4 +1,4 @@
-<p align="center"><img width="300" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
+<p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
 
 <p align="center">
   Write components once, run everywhere. Make svelte components run inside React or Vue applications.
