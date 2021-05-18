@@ -1,6 +1,6 @@
-<p align="center" style="font-family: 'Fira Code', 'Roboto Mono', 'Consolas', monospace; font-size: 36px;">svere</p>
+<p align="center"><img width="300" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
 
-<p align="center" style="font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<p align="center">
   Write components once, run everywhere. Make svelte components run inside React or Vue applications.
 </p>
 
