@@ -53,13 +53,13 @@ yarn add @svere/core
 The core of svere exposes several adapter functions, namely `toReact`, `toVue` and `toVue3`.
 Each adapter is a simple function that takes a svelte component and a few options and returns a Vue or React component that can be used in Vue templates or JSX as you would expect.
 
-All adapters have the same signature:
+All adapters have the same signature as below, eg:
 ```ts
 toReact(Component: SvelteComponent, wrapperProps?: WrapperProps) : Component
 ```
 - `Component` should be a compiled svelte component, either precompiled or compiled as part of your build step using rollup-plugin-svelte for rollup or svelte-loader from webpack.
 - `wrapperProps` (optional) should be an object contains wrapper `element`, `id`, `className` and `styles`.
-   - `element` : all component have a base wrapper element, by default this is a <div> but you can pass in a string to customise this behaviour (eg: 'span', 'li', etc.)
+   - `element` : all component have a base wrapper element, by default this is a `<div>` but you can pass in a string to customise this behaviour (eg: 'span', 'li', etc.)
    - `id` : add an id attribute to the base wrapper element, by default this is `svelte-wrapper`.
    - `className` : add a class attribute to the base wrapper element.
    - `styles` : add an inline styles attribute to the base wrapper element which can override the `className` attribute.
