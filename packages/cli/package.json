@@ -31,7 +31,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FE-PIRL/svere-templates.git"
+    "url": "https://github.com/FE-PIRL/svere.git",
+    "templates": "https://github.com/FE-PIRL/svere-templates.git"
   },
   "dependencies": {
     "commander": "^6.2.1",
@@ -58,5 +59,6 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
-  }
+  },
+  "gitHead": "6de6aed395a916e379229c7bca709c2f0ff3310b"
 }

@@ -5,7 +5,23 @@
   "files": [
     "dist"
   ],
-  "keywords": ["svelte","adapter","react","vue","vue3","cfc"],
+  "keywords": [
+    "svelte",
+    "adapter",
+    "react",
+    "vue",
+    "vue3",
+    "cfc"
+  ],
   "author": "benyasin",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "6de6aed395a916e379229c7bca709c2f0ff3310b",
+  "homepage": "https://github.com/FE-PIRL/svere#readme",
+  "bugs": {
+    "url": "https://github.com/FE-PIRL/svere/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:FE-PIRL/svere.git"
+  }
 }
