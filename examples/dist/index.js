@@ -316,7 +316,7 @@
     			h1 = element("h1");
     			t0 = text("Hello ");
     			t1 = text(/*name*/ ctx[0]);
-    			t2 = text(", welcome!");
+    			t2 = text("!");
     			t3 = space();
     			button0 = element("button");
     			t4 = text("add count: ");
