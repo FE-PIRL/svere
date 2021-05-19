@@ -5,7 +5,7 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "wangbingying",
+  "keywords": ["svelte","adapter","react","vue","vue3","cfc"],
+  "author": "benyasin",
   "license": "MIT"
 }
