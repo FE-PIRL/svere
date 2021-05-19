@@ -1,5 +1,3 @@
-English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.md)
-
 <p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
 
 <p align="center">
@@ -12,7 +10,9 @@ English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.
   <a href="https://www.npmjs.com/package/@svere/core"><img alt="Downloads" src="https://img.shields.io/npm/dm/svere.svg?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@svere/core" rel="nofollow"><img alt="Version" src="https://img.shields.io/npm/v/svere.svg?style=flat-square"></a>
 </p>
- 
+
+English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.md)
+
 ---
 
 - [Intro](#intro)

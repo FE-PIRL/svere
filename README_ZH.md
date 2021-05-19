@@ -1,9 +1,7 @@
-简体中文 | [English](https://github.com/FE-PIRL/svere/blob/master/README.md)
-
 <p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
 
 <p align="center">
-  一处编写，多处运行. 让Svelte组件跑在React或Vue应用中.
+  一处编写,多处运行. 让Svelte组件跑在React或Vue应用中.
 </p>
 
 <p align="center">
@@ -12,7 +10,9 @@
   <a href="https://www.npmjs.com/package/@svere/core"><img alt="Downloads" src="https://img.shields.io/npm/dm/svere.svg?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@svere/core" rel="nofollow"><img alt="Version" src="https://img.shields.io/npm/v/svere.svg?style=flat-square"></a>
 </p>
- 
+
+简体中文 | [English](https://github.com/FE-PIRL/svere/blob/master/README.md)
+
 ---
 
 - [Intro](#intro)
