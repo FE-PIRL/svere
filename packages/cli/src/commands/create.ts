@@ -46,7 +46,7 @@ async function installTemplate(targetDir, template, force, cache, debug) {
   }
   await fs.emptyDir(targetDir);
 
-  const githubRepo = pkg.repository.url.match(/github\.com\/(.*).git/)[1];
+  const githubRepo = pkg.repository.templates.match(/github\.com\/(.*).git/)[1];
   const beta = pkg.version.indexOf("beta") > -1;
   const degitPath = `${githubRepo}/${template}${beta ? "#beta" : ""}`;
   const degitOptions = {
