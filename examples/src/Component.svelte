@@ -5,17 +5,22 @@
 
 	let count = 0;
 
-	function handleClick(event) {
+	function handleChangeCount(event) {
 		count += 1;
-		name = 'yasin';
 		dispatch('someEvent', count);
+	}
+	function handleChangeName() {
+		name = 'boss';
 	}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<button on:click={handleClick}>
-		count: {count}
+	<h1>Hello {name}, welcome!</h1>
+	<button on:click={handleChangeCount}>
+		add count: {count}
+	</button>
+	<button on:click={handleChangeName}>
+		update name: {name}
 	</button>
 </main>
 
@@ -32,11 +37,5 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>

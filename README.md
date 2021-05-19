@@ -63,7 +63,203 @@ toReact(Component: SvelteComponent, wrapperProps?: WrapperProps) : Component
    - `id` : add an id attribute to the base wrapper element, by default this is `svelte-wrapper`.
    - `className` : add a class attribute to the base wrapper element which you can define styles in your css files.
    - `styles` : add an inline styles attribute to the base wrapper element which can override the `className` attribute.
-  
+
+# Examples
+
+In the examples below, the [svelte component](https://github.com/FE-PIRL/svere/blob/master/examples/src/Component.svelte) we will be using is a simple component that accepts a prop that will be rendered and emits an event upon clicking a button.
+Bundle it to a single file with `umd` format, then it will be imported by other framework  conveniently.
+
+```sveltehtml
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  export let name: string;
+
+  let count = 0;
+
+  function handleChangeCount(event) {
+    count += 1;
+    dispatch('someEvent', count);
+  }
+  function handleChangeName() {
+    name = 'boss';
+  }
+</script>
+
+<main>
+  <h1>Hello {name}, welcome!</h1>
+  <button on:click={handleChangeCount}>
+    add count: {count}
+  </button>
+  <button on:click={handleChangeName}>
+    update name: {name}
+  </button>
+</main>
+
+<style>
+  main {
+    text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 100;
+  }
+</style>
+```
+
+## React
+
+```jsx
+import React, { useState } from "react";
+import SvelteComponent from "./svelte-component";
+import toReact from '@svere/core/dist/react.js'
+
+const wrapperProps = {
+  element: "section",
+  className: "section-css",
+  id: "svelte-react",
+  styles: {
+    border: "1px solid gray",
+  },
+};
+const ReactComponent = toReact(SvelteComponent, wrapperProps);
+
+const App = () => {
+  const [name, setName] = useState('ben');
+  const changeName = () => setName(n => {
+    return name === 'ben' ? 'yasin' : 'ben'
+  });
+
+  const handleEventCallback = (e) => {
+    console.log(e.detail)
+  };
+
+  const handleWatchCallback = (name) => {
+    console.log(name)
+  };
+
+  return (
+    <div>
+      <ReactComponent
+          name={name}
+          onSomeEvent={handleEventCallback}
+          watchName={handleWatchCallback}
+      />
+
+      <br/>
+
+      <button onClick={changeName}> change inner variable name </button>
+    </div>
+  );
+};
+```
+
+## Vue
+
+```vue
+<template>
+  <div>
+    <VueComponent
+      :name="name"
+      @someEvent="handleEventCallback"
+      @watch:name="handleWatchCallback"
+    />
+    <button @click="changeName">change inner variable name</button>
+  </div>
+</template>
+
+<script>
+import SvelteComponent from "./svelte-component";
+import toVue from '@svere/core/dist/vue.js'
+
+export default {
+  components: {
+    VueComponent: toVue(SvelteComponent)
+  },
+  data() {
+    return {
+      name: 'ben'
+    };
+  },
+  methods: {
+    changeName() {
+       this.name = this.name === 'ben' ? 'yasin' : 'ben'
+    },
+    handleEventCallback(e){
+      console.log(e.detail)
+    },
+    handleWatchCallback(name){
+      console.log(name)
+    }
+  }
+};
+</script>
+```
+
+## Vue3
+
+```vue
+<template>
+  <VueComponent
+          :name="name"
+          @someEvent="handleEventCallback"
+          @watch:name="handleWatchCallback"
+  />
+  <br/>
+  <button @click="changeName">change inner variable name</button>
+</template>
+
+<script>
+import {ref} from 'vue'
+import SvelteComponent from "./svelte-component";
+import toVue3 from '@svere/core/dist/vue3.js'
+const wrapperProps = {
+  element: "section",
+  className: "section-css",
+  id: "svelte-react",
+  styles: {
+    border: "1px solid gray",
+  },
+};
+export default {
+  name: 'App',
+  components: {
+    VueComponent: toVue3(SvelteComponent,wrapperProps)
+  },
+  setup() {
+    const name = ref('ben')
+    const changeName = () => {
+      name.value = name.value === 'ben' ? 'yasin' : 'ben'
+    }
+    const handleEventCallback = (e)=>{
+      console.log(e.detail)
+    }
+    const handleWatchCallback = (name)=>{
+      console.log(name)
+    }
+    return {
+      name,
+      changeName,
+      handleEventCallback,
+      handleWatchCallback
+    }
+  }
+}
+</script>
+
+<style>
+body {
+  text-align: center;
+}
+</style>
+```
+
 # Cli
 Try svere out locally with our [CLI](https://github.com/FE-PIRL/svere/tree/master/packages/cli)
 
