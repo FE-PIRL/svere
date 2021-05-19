@@ -269,4 +269,4 @@ Try svere out locally with our [CLI](https://github.com/FE-PIRL/svere/tree/maste
 
 - develop cli features: `dev`、`build`(bundle component to single file with umd format).
 - integrate cli with core.
-- develop core to add more features, eg: sub-component.
+- develop core to add more features, eg: sub-component, slots.
