@@ -1,6 +1,6 @@
 {
   "name": "@svere/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "svelte adapter for react/vue/vue3",
   "files": [
     "dist"
