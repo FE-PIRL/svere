@@ -160,7 +160,7 @@ const App = () => {
 };
 ```
 
-## Vue
+## Vue2
 
 ```vue
 <template>
@@ -263,14 +263,8 @@ body {
 # Cli
 Try svere out locally with our [CLI](https://github.com/FE-PIRL/svere/tree/master/packages/cli)
 
-With [npm](https://www.npmjs.com/):
+# Todos
 
-```bash
-npm install -g @svere/cli
-```
-
-Or with [yarn](https://yarnpkg.com/lang/en/):
-
-```bash
-yarn add global @svere/cli
-```
+- develop cli features: `dev`、`build`(bundle component to single file with umd format).
+- integrate cli with core.
+- develop core to add more features, eg: sub-component.
