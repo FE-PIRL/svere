@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.com/package/@svere/core"><img alt="Downloads" src="https://img.shields.io/npm/dm/svere.svg?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@svere/core" rel="nofollow"><img alt="Version" src="https://img.shields.io/npm/v/svere.svg?style=flat-square"></a>
 </p>
-
+ 
 ---
 
 - [Intro](#intro)
