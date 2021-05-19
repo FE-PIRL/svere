@@ -1,9 +1,9 @@
-English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.md)
+简体中文 | [English](https://github.com/FE-PIRL/svere/blob/master/README.md)
 
 <p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
 
 <p align="center">
-  Write components once, run everywhere. Make svelte components run inside React or Vue applications.
+  一处编写，多处运行. 让Svelte组件跑在React或Vue应用中.
 </p>
 
 <p align="center">
