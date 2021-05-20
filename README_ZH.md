@@ -30,7 +30,7 @@
 众所周知, 使提供UI组件的库跨框架使用是一件痛苦的事,
 尤其当[Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 不是一个选项的时候(比如服务端渲染,最佳性能等).
 
-目前, [svelte](https://svelte.dev/) 框架正在快速发展. 
+目前, [svelte](https://www.sveltejs.cn/) 框架正在快速发展. 
 让svelte组件跑在旧的`react`或`vue` 工程中是一个好的向后兼容的方案, 
 尤其当团队的技术栈不统一时,这提供了一个跨框架共享组件的思路.
 
