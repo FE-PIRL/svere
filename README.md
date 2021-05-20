@@ -265,6 +265,18 @@ body {
 # Cli
 Try svere out locally with our [CLI](https://github.com/FE-PIRL/svere/tree/master/packages/cli)
 
+With [npm](https://www.npmjs.com/):
+
+```bash
+npm install @svere/cli
+```
+
+Or with [yarn](https://yarnpkg.com/lang/en/):
+
+```bash
+yarn add @svere/cli
+```
+
 # Todos
 
 - develop cli features: `dev`、`build`(bundle component to single file with umd format).

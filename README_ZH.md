@@ -15,61 +15,62 @@
 
 ---
 
-- [Intro](#intro)
-- [Install](#install)
-- [Usage](#usage)
-- [Examples](#examples)
+- [介绍](#介绍)
+- [安装](#安装)
+- [用法](#用法)
+- [示例](#示例)
     - [React](#react)
     - [Vue2](#vue2)
     - [Vue3](#vue3)
-- [Cli](#cli)
-- [Todos](#todos)
+- [命令行](#命令行)
+- [待办](#待办)
 
-# Intro
+# 介绍
 
-Managing support for libraries that provide UI components across frameworks is a pain, 
-especially when [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) are not an option (e.g. for server side rendering, best performance, etc).
+众所周知, 使提供UI组件的库跨框架使用是一件痛苦的事,
+尤其当[Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 不是一个选项的时候(比如服务端渲染,最佳性能等).
 
-At present, the [svelte](https://svelte.dev/) framework is developing rapidly. 
-It is a good backward compatibility solution to make svelte components run in the old `react` or `vue` project, 
-especially when the team's technology stack is not unified, this provides an idea of cross-framework sharing component.
+目前, [svelte](https://svelte.dev/) 框架正在快速发展. 
+让svelte组件跑在旧的`react`或`vue` 工程中是一个好的向后兼容的方案, 
+尤其当团队的技术栈不统一时,这提供了一个跨框架共享组件的思路.
 
-`Svere` contains several `adapters` for `React/Vue2/Vue3` which allows you to pass props and respond to events in a way that makes sense for that library.
-Also, it provides a `cli` to quickly create svelte components that can be shared across components.
+`Svere`包含了几个对`React/Vue2/Vue3`的`适配器`, 允许你使用一种对组件有意义的方式传递参数和响应事件.
+同是，它提供一个`cli`可以用来快速创建可跨框架共享的组件的模板.
 
-# Install
+# 安装
 
-With [npm](https://www.npmjs.com/):
+使用 [npm](https://www.npmjs.com/):
 
 ```bash
 npm install @svere/core
 ```
 
-Or with [yarn](https://yarnpkg.com/lang/en/):
+或 [yarn](https://yarnpkg.com/lang/en/):
 
 ```bash
 yarn add @svere/core
 ```
-# Usage
 
-The core of svere exposes several adapter functions, namely `toReact`, `toVue` and `toVue3`.
-Each adapter is a simple function that takes a svelte component and a few options and returns a Vue or React component that can be used in Vue templates or JSX as you would expect.
+# 用法
 
-All adapters have the same signature as below, eg:
+svere的核心暴露了几个适配器函数, 可称之为`toReact`, `toVue` 和 `toVue3`.
+每个适配器都是一个简单的函数, 它接受一个svelte组件和一些选项并且返回可以在Vue模板或JSX中使用的Vue或React组件.
+
+所有的适配器函数都有如下相同的入参, 例如:
 ```ts
 toReact(Component: SvelteComponent, wrapperProps?: WrapperProps) : Component
 ```
-- `Component` should be a compiled svelte component, either precompiled or compiled as part of your build step using rollup-plugin-svelte for rollup or svelte-loader from webpack.
-- `wrapperProps` (optional) should be an object contains wrapper `element`, `id`, `className` and `styles`.
-   - `element` : all component have a base wrapper element, by default this is a `<div>` but you can pass in a string to customise this behaviour (eg: 'span', 'li', etc.)
-   - `id` : add an id attribute to the base wrapper element, by default this is `svelte-wrapper`.
-   - `className` : add a class attribute to the base wrapper element which you can define styles in your css files.
-   - `styles` : add an inline styles attribute to the base wrapper element which can override the `className` attribute.
+- `Component` 是一个编译过的svelte组件,使用rollup时配合rollup-plugin-svelte，或使用webpack时配合svelte-loader，作为构建过程中的一步进行预编译或编译.
+- `wrapperProps` (可选) 是一个包裹对象, 包含了 `element`, `id`, `className` 和 `styles`.
+   - `element` : 所有组件都有一个基础的包裹元素, 默认是`<div>` 但你也可以传入一个字符串来定制它 (比如: 'span', 'li' 等.)
+   - `id` : 在基础包裹元素上添加id属性, 默认是`svelte-wrapper`.
+   - `className` : 在基础包裹元素上添加class属性，允许你在样式文件定义实现.
+   - `styles` : 在基础包裹元素上添加内联样式属性, 可以覆盖`className`中的样式定义.
 
-# Examples
+# 示例
 
-In the examples below, the [svelte component](https://github.com/FE-PIRL/svere/blob/master/examples/src/Component.svelte) we will be using is a simple component that accepts a prop that will be rendered and emits an event upon clicking a button.
-Bundle it to a single file with `umd` format, then it will be imported by other framework  conveniently.
+在下面的例子中, 我们要使用的[svelte component](https://github.com/FE-PIRL/svere/blob/master/examples/src/Component.svelte) 是一个接受prop后渲染, 通过点击触发事件的简单组件.
+将它打包成`umd`格式的单文件, 以便于可以被其它框架方便地引入.
 
 ```sveltehtml
 <script lang="ts">
@@ -262,11 +263,23 @@ body {
 </style>
 ```
 
-# Cli
-Try svere out locally with our [CLI](https://github.com/FE-PIRL/svere/tree/master/packages/cli)
+# 命令行
+使用我们的[CLI](https://github.com/FE-PIRL/svere/tree/master/packages/cli) 在本地尝试svere.
 
-# Todos
+使用 [npm](https://www.npmjs.com/):
 
-- develop cli features: `dev`、`build`(bundle component to single file with umd format).
-- integrate cli with core.
-- develop core to add more features, eg: sub-component, slots.
+```bash
+npm install @svere/core
+```
+
+或 [yarn](https://yarnpkg.com/lang/en/):
+
+```bash
+yarn add @svere/core
+```
+
+# 待办
+
+- 开发更多命令行特性: `dev`、`build`(把组件打包成umd格式的单文件).
+- 整合core到cli中.
+- 添加更多特性到core中, 例如: 子组件、插槽.
