@@ -8,10 +8,10 @@ exports[`React custom wrapper 1`] = `
     style="border: 1px solid gray;"
   >
     <main
-      class="svelte-1tky8bj"
+      class="svelte-4hq7sh"
     >
       <h1
-        class="svelte-1tky8bj"
+        class="svelte-4hq7sh"
       >
         Hello 
         ben
@@ -19,8 +19,13 @@ exports[`React custom wrapper 1`] = `
       </h1>
        
       <button>
-        count: 
+        add count: 
         0
+      </button>
+       
+      <button>
+        update name: 
+        ben
       </button>
     </main>
   </section>
@@ -33,10 +38,10 @@ exports[`React should render 1`] = `
     id="svelte-wrapper"
   >
     <main
-      class="svelte-1tky8bj"
+      class="svelte-4hq7sh"
     >
       <h1
-        class="svelte-1tky8bj"
+        class="svelte-4hq7sh"
       >
         Hello 
         ben
@@ -44,8 +49,13 @@ exports[`React should render 1`] = `
       </h1>
        
       <button>
-        count: 
+        add count: 
         0
+      </button>
+       
+      <button>
+        update name: 
+        ben
       </button>
     </main>
   </div>

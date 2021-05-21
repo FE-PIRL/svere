@@ -29,11 +29,11 @@ describe("Vue", () => {
     const VueComponent = toVue3(SvelteComponent);
 
     const wrapper = mount(VueComponent, { props: { name } });
-    expect(wrapper.find("button").text()).toBe("count: 0");
+    expect(wrapper.find("button").text()).toBe( "add count: 0");
 
     await wrapper.find("button").trigger("click");
 
-    expect(wrapper.find("button").text()).toBe("count: 1");
+    expect(wrapper.find("button").text()).toBe("add count: 1");
   });
 
   //listeners has not been supported for now

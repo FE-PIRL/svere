@@ -8,6 +8,7 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
         render(createElement) {
             return createElement(wrapperProps?.element, {
                 ref: "container",
+                props: this.$attrs,
                 class: wrapperProps?.className,
                 attrs: { id: wrapperProps?.id },
                 style: { ...wrapperProps?.styles },
@@ -19,6 +20,7 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
             };
         },
         mounted() {
+            // @ts-ignore
             this.comp = new Component({
                 target: this.$refs.container,
                 props: this.$attrs,

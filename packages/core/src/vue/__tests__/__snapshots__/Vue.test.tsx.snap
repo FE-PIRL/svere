@@ -2,16 +2,16 @@
 
 exports[`Vue custom wrapper 1`] = `
 "<section id=\\"svelte-vue2\\" class=\\"section-css\\" style=\\"border: 1px solid gray;\\" name=\\"ben\\">
-  <main class=\\"svelte-1tky8bj\\">
-    <h1 class=\\"svelte-1tky8bj\\">Hello ben!</h1> <button>count: 0</button>
+  <main class=\\"svelte-4hq7sh\\">
+    <h1 class=\\"svelte-4hq7sh\\">Hello ben!</h1> <button>add count: 0</button> <button>update name: ben</button>
   </main>
 </section>"
 `;
 
 exports[`Vue should render 1`] = `
 "<div id=\\"svelte-wrapper\\" name=\\"ben\\">
-  <main class=\\"svelte-1tky8bj\\">
-    <h1 class=\\"svelte-1tky8bj\\">Hello ben!</h1> <button>count: 0</button>
+  <main class=\\"svelte-4hq7sh\\">
+    <h1 class=\\"svelte-4hq7sh\\">Hello ben!</h1> <button>add count: 0</button> <button>update name: ben</button>
   </main>
 </div>"
 `;

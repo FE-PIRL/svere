@@ -5,7 +5,7 @@ import SvelteComponent from "../../../../../examples/dist";
 
 describe("Vue", () => {
   let container: any;
-  const name = "ben";
+  let name = "ben";
 
   beforeEach(() => {
     container = document.createElement("div");
@@ -29,11 +29,11 @@ describe("Vue", () => {
     const VueComponent = toVue(SvelteComponent);
 
     const wrapper = shallowMount(VueComponent,{propsData: { name }});
-    expect(wrapper.find("button").text()).toBe("count: 0");
+    expect(wrapper.find("button").text()).toBe("add count: 0");
 
     await wrapper.find("button").trigger("click");
 
-    expect(wrapper.find("button").text()).toBe("count: 1");
+    expect(wrapper.find("button").text()).toBe("add count: 1");
   });
 
   it("watch internal props changes and execute the callback", async () => {

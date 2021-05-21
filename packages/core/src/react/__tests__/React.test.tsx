@@ -39,14 +39,14 @@ describe("React", () => {
     });
 
     const button = container.querySelector("button");
-    expect(button.textContent).toBe("count: 0");
+    expect(button.textContent).toBe("add count: 0");
 
     // Test second render and componentDidUpdate
     await act(async () => {
       button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    expect(button.textContent).toBe("count: 1");
+    expect(button.textContent).toBe("add count: 1");
   });
 
   it("watch internal props changes and execute the callback", async () => {
