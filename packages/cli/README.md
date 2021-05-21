@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/FE-PIRL/svere/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <a href="https://github.com/FE-PIRL/svere/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@svere/cli"><img alt="Types" src="https://img.shields.io/npm/types/@svere/cli" /></a>
+  <a href="https://www.npmjs.com/package/@svere/cli"><img alt="Downloads" src="https://img.shields.io/npm/dm/@svere/cli" /></a>
   <a href="https://www.npmjs.com/package/@svere/cli" rel="nofollow"><img src="https://img.shields.io/npm/v/@svere/cli.svg?sanitize=true"></a>
 </p>
 
