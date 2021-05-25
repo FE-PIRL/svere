@@ -281,4 +281,5 @@ yarn add @svere/cli
 
 - develop cli features: `dev`、`build`(bundle component to single file with umd format).
 - integrate cli with core.
+- publish to npm or cdn.
 - develop core to add more features, eg: sub-component, slots.
