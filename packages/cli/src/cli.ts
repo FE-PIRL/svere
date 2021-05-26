@@ -18,10 +18,10 @@ export async function main() {
   program
     .command("build")
     .description("Build your component once and exit")
-    .option("--entry <string>", "Entry module", "src/components/index.ts")
-    //.option("--name", "Specify name exposed in UMD builds")
-    .option("--format <string>", "Specify module format(s)", "umd,esm")
-    .option("--transpileOnly", "Skip type checking",true)
+    .option("--entry <string>", "specify entry file", "src/components/index.ts")
+    .option("--fileName <string>", "specify fileName exposed in UMD builds")
+    .option("--format <string>", "specify module format(s)", "umd,esm")
+    .option("--transpileOnly", "skip type checking", true)
     .action(async cmd => {
       const options = cmd.opts();
       await buildCommand(options);

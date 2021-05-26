@@ -1,10 +1,8 @@
-import { RollupOptions, OutputOptions } from "rollup";
 import * as fs from "fs-extra";
 import { concatAllArray } from "jpjs";
-
 import { paths } from "../constants";
+import { RollupOptions, OutputOptions } from "rollup";
 import { SvereOptions, NormalizedOpts } from "../types";
-
 import { createRollupConfig } from "./createRollupConfig";
 
 // check for custom svere.config.js
@@ -36,7 +34,7 @@ export async function createBuildConfig(
 
   return await Promise.all(
     allInputs.map(async (options: SvereOptions, index: number) => {
-      // pass the full rollup config to tsdx.config.js override
+      // pass the full rollup config to svere.config.js override
       const config = await createRollupConfig(options, index);
       return svereConfig.rollup(config, options);
     })

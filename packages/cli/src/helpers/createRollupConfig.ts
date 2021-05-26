@@ -12,8 +12,8 @@ import sourceMaps from "rollup-plugin-sourcemaps";
 import typescript from "rollup-plugin-typescript2";
 import ts from "typescript";
 import { SvereOptions } from "../types";
-import svelte from 'rollup-plugin-svelte';
-import { scss } from 'svelte-preprocess';
+import svelte from "rollup-plugin-svelte";
+import { scss } from "svelte-preprocess";
 
 // shebang cache map thing because the transform only gets run once
 let shebang: any = {};
@@ -46,7 +46,7 @@ export async function createRollupConfig(
   ).options;
 
   return {
-    external: ['svelte'],
+    external: ["svelte"],
     // Tell Rollup the entry point to the package
     input: opts.input,
     // Rollup has treeshaking by default, but we can optimize it further...
@@ -90,9 +90,9 @@ export async function createRollupConfig(
         preprocess: [
           scss({
             /** options */
-          }),
+          })
         ],
-        emitCss: false,
+        emitCss: false
       }),
       resolve({
         mainFields: [
@@ -146,6 +146,7 @@ export async function createRollupConfig(
       }),
       opts.env !== undefined &&
         replace({
+          preventAssignment: true,
           "process.env.NODE_ENV": JSON.stringify(opts.env)
         }),
       sourceMaps(),

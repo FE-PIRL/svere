@@ -52,6 +52,14 @@ test("create from template", async () => {
 test("build component", async () => {
   jest.setTimeout(80 * 1000);
 
-  const a = await cli(["build"], "./xxx");
-  console.log(a)
+  // assume you had run test case above and executed npm install
+  const result = await cli(["build --fileName test"], "./test-install");
+  //console.log(result);
+  const dist = filesystem.path(root, "test-install", "dist");
+  const distExists = fs.existsSync(dist);
+  expect(distExists).toBe(true);
+
+  const testFile = filesystem.path(root, "test-install", "dist", "test.esm.js");
+  const testFileExists = fs.existsSync(testFile);
+  expect(testFileExists).toBe(true);
 });

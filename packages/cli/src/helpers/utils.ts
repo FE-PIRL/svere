@@ -76,7 +76,7 @@ async function getInputs(
 export async function normalizeOpts(opts: WatchOpts): Promise<NormalizedOpts> {
   return {
     ...opts,
-    name: opts.name || appPackageJson.name,
+    name: opts.fileName || appPackageJson.name,
     input: await getInputs(opts.entry, appPackageJson.source),
     format: opts.format.split(",").map((format: string) => {
       if (format === "es") {
