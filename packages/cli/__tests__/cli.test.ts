@@ -48,3 +48,10 @@ test("create from template", async () => {
   const modulesExist = fs.existsSync(modules);
   expect(modulesExist).toBe(false);
 });
+
+test("build component", async () => {
+  jest.setTimeout(80 * 1000);
+
+  const a = await cli(["build"], "./xxx");
+  console.log(a)
+});

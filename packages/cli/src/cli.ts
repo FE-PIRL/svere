@@ -1,6 +1,7 @@
 import program from "commander";
 import path from "path";
 import { command as initCommand } from "./commands/create";
+import { command as buildCommand } from "./commands/build";
 import { logger } from "./helpers/logger";
 
 const pkg = require(path.join(__dirname, "../package.json"));
@@ -16,12 +17,15 @@ export async function main() {
 
   program
     .command("build")
-    .description("build")
-    .option(
-      "-d, --debug [boolean|string]",
-      'enable debug output. you can use true for "svite:*" or supply your own patterns. Separate patterns with , start with - to filter. eg: "foo:*,-foo:bar" ',
-      false
-    );
+    .description("Build your component once and exit")
+    .option("--entry <string>", "Entry module", "src/components/index.ts")
+    //.option("--name", "Specify name exposed in UMD builds")
+    .option("--format <string>", "Specify module format(s)", "umd,esm")
+    .option("--transpileOnly", "Skip type checking",true)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await buildCommand(options);
+    });
 
   program
     .command("create [targetDir]")

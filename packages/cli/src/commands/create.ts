@@ -2,9 +2,9 @@ import * as colors from "kleur/colors";
 import { logger } from "../helpers/logger";
 import execa from "execa";
 import fs from "fs-extra";
-import { LoggerOptions } from "../types";
+import { LoggerOptions, PackageJson } from "../types";
 const path = require("path");
-const pkg = require(path.join(__dirname, "../../package.json"));
+const pkg: PackageJson = require(path.join(__dirname, "../../package.json"));
 const degit = require("degit");
 
 export async function command(commandOptions: any) {
