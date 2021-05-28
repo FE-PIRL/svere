@@ -14,6 +14,7 @@ export interface PackageJson {
 }
 
 interface SharedOpts {
+  commandName?: string;
   // JS target
   target: "node" | "browser";
   // Path to tsconfig file
@@ -22,7 +23,7 @@ interface SharedOpts {
   extractErrors?: boolean;
 }
 
-export type ModuleFormat = "cjs" | "umd" | "esm" | "system";
+export type ModuleFormat = "cjs" | "umd" | "esm" | "iife";
 
 export interface BuildOpts extends SharedOpts {
   fileName?: string;

@@ -2,6 +2,7 @@ import program from "commander";
 import path from "path";
 import { command as initCommand } from "./commands/create";
 import { command as buildCommand } from "./commands/build";
+import { command as devCommand } from "./commands/dev";
 import { logger } from "./helpers/logger";
 
 const pkg = require(path.join(__dirname, "../package.json"));
@@ -13,18 +14,30 @@ export async function main() {
     .version(version, "-v, --version")
     .description("svere - build svelte apps with svere");
 
-  program.command("dev", { isDefault: true }).description("start dev server");
+  program
+    .command("dev")
+    .description("start dev server")
+    .option("--entry <string>", "specify entry file for dev", "src/main.ts")
+    .option("-d, --debug", "more debug logging", false)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await devCommand(options, cmd._name);
+    });
 
   program
     .command("build")
     .description("Build your component once and exit")
-    .option("--entry <string>", "specify entry file", "src/components/index.ts")
+    .option(
+      "--entry <string>",
+      "specify entry file for build",
+      "src/components/index.ts"
+    )
     .option("--fileName <string>", "specify fileName exposed in UMD builds")
     .option("--format <string>", "specify module format(s)", "umd,esm")
     .option("--transpileOnly", "skip type checking", true)
     .action(async cmd => {
       const options = cmd.opts();
-      await buildCommand(options);
+      await buildCommand(options, cmd._name);
     });
 
   program
@@ -48,7 +61,7 @@ export async function main() {
       false
     )
     .option("-c, --cache", "cache template for later use", false)
-    .option("-d, --debug", "more verbose logging", false)
+    .option("-d, --debug", "more debug logging", false)
     .option("-si, --skip-install", "skip install", false)
     .option("-sg, --skip-git", "skip git init", false)
     .option("-sc, --skip-commit", "skip initial commit", false)

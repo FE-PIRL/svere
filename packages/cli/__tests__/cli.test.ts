@@ -63,3 +63,11 @@ test("build component", async () => {
   const testFileExists = fs.existsSync(testFile);
   expect(testFileExists).toBe(true);
 });
+
+test("start dev server", async () => {
+  jest.setTimeout(80 * 1000);
+
+  // assume you had run test case above and executed npm install
+  const devServer = await cli(["dev -d"], "./test-install");
+  console.log(devServer);
+});

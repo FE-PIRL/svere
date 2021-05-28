@@ -74,15 +74,26 @@ async function getInputs(
 }
 
 export async function normalizeOpts(opts: WatchOpts): Promise<NormalizedOpts> {
-  return {
-    ...opts,
-    name: opts.fileName || appPackageJson.name,
-    input: await getInputs(opts.entry, appPackageJson.source),
-    format: opts.format.split(",").map((format: string) => {
-      if (format === "es") {
-        return "esm";
-      }
-      return format;
-    }) as [ModuleFormat, ...ModuleFormat[]]
-  };
+  if (opts.commandName === "dev") {
+    return {
+      ...opts,
+      name: "bundle",
+      input: await getInputs(opts.entry),
+      format: ["iife"] as [ModuleFormat, ...ModuleFormat[]]
+    };
+  } else {
+    return {
+      ...opts,
+      name: opts.fileName || appPackageJson.name,
+      input: await getInputs(opts.entry, appPackageJson.source),
+      format:
+        opts.format &&
+        (opts.format.split(",").map((format: string) => {
+          if (format === "es") {
+            return "esm";
+          }
+          return format;
+        }) as [ModuleFormat, ...ModuleFormat[]])
+    };
+  }
 }

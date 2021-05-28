@@ -10,6 +10,7 @@ export const paths = {
   appRoot: resolvePath("."),
   appSrc: resolvePath("src"),
   appDist: resolvePath("dist"),
+  appPublic: resolvePath("public"),
   appConfig: resolvePath("svere.config.js"),
   jestConfig: resolvePath("jest.config.js")
 };

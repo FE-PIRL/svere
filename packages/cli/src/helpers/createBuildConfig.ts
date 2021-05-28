@@ -47,6 +47,7 @@ function createAllFormats(
 ): [SvereOptions, ...SvereOptions[]] {
   return [
     opts.format.includes("esm") && { ...opts, format: "esm", input },
+    opts.format.includes("iife") && { ...opts, format: "iife", input },
     opts.format.includes("umd") && {
       ...opts,
       format: "umd",
