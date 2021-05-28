@@ -6,12 +6,24 @@ import { LoggerOptions, PackageJson } from "../types";
 const path = require("path");
 const pkg: PackageJson = require(path.join(__dirname, "../../package.json"));
 const degit = require("degit");
+const templates = ["default"];
 
 export async function command(commandOptions: any) {
-  const template = commandOptions.template;
   const force = commandOptions.force;
   const cache = commandOptions.cache;
   const debug = commandOptions.debug;
+  const template = commandOptions.template;
+  if (debug) {
+    logger.level = "debug";
+  }
+
+  if (!templates.includes(template)) {
+    logger.error(
+      `invalid template ${template}. Valid: ${JSON.stringify(templates)}`
+    );
+    return;
+  }
+
   const targetDir = path.join(
     process.cwd(),
     commandOptions.targetDir || `svere-${template.replace("/", "-")}`

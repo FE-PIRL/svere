@@ -4,9 +4,8 @@ import { normalizeOpts } from "../helpers/utils";
 import { createBuildConfig } from "../helpers/createBuildConfig";
 import { watch, RollupOptions, OutputOptions } from "rollup";
 
-export async function command(commandOptions: any, commandName: string) {
+export async function command(commandOptions: any) {
   try {
-    commandOptions.commandName = commandName;
     if (commandOptions.debug) {
       logger.level = "debug";
     }
@@ -22,12 +21,12 @@ export async function command(commandOptions: any, commandName: string) {
             return e;
           });
           watcher.close();
-          return watcher
+          return watcher;
         }
       )
       .catch((e: any) => {
         throw e;
-      })
+      });
     logger.info("Start application successfully");
     await promise;
   } catch (error) {

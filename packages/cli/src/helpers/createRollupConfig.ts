@@ -204,7 +204,7 @@ export async function createRollupConfig(
       // Respect tsconfig esModuleInterop when setting __esModule.
       esModule: Boolean(tsCompilerOptions?.esModuleInterop),
       name: opts.name || safeVariableName(opts.name),
-      sourcemap: true,
+      sourcemap: opts.commandName !== "dev",
       exports: "named"
     },
     plugins,

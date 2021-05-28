@@ -31,7 +31,8 @@ test("outputs version", async () => {
 test("create from template", async () => {
   jest.setTimeout(80 * 1000);
 
-  await cli(["create test-install -d -f -si"], ".");
+  const builder = await cli(["create test-install -d -f -si"], ".");
+  console.log(builder)
 
   // rollup.config.js is a file we can test for to assume successful
   // install, since it’s added at the end.

@@ -1,13 +1,10 @@
 import program from "commander";
-import path from "path";
+import * as fs from "fs-extra";
+import { paths } from "./constants";
 import { command as initCommand } from "./commands/create";
 import { command as buildCommand } from "./commands/build";
 import { command as devCommand } from "./commands/dev";
-import { logger } from "./helpers/logger";
-
-const pkg = require(path.join(__dirname, "../package.json"));
-const version = pkg.version;
-const templates = ["default"];
+const { version } = fs.readJSONSync(paths.appPackageJson);
 
 export async function main() {
   program
@@ -21,7 +18,8 @@ export async function main() {
     .option("-d, --debug", "more debug logging", false)
     .action(async cmd => {
       const options = cmd.opts();
-      await devCommand(options, cmd._name);
+      options.commandName = cmd._name;
+      await devCommand(options);
     });
 
   program
@@ -35,9 +33,11 @@ export async function main() {
     .option("--fileName <string>", "specify fileName exposed in UMD builds")
     .option("--format <string>", "specify module format(s)", "umd,esm")
     .option("--transpileOnly", "skip type checking", true)
+    .option("-d, --debug", "more debug logging", false)
     .action(async cmd => {
       const options = cmd.opts();
-      await buildCommand(options, cmd._name);
+      options.commandName = cmd._name;
+      await buildCommand(options);
     });
 
   program
@@ -47,7 +47,7 @@ export async function main() {
     )
     .option(
       "-t, --template <string>",
-      `template for new project. ${JSON.stringify(templates)}`,
+      `specify template for new project`,
       "default"
     )
     .option(
@@ -68,15 +68,6 @@ export async function main() {
     .action(async (targetDir, cmd) => {
       const options = cmd.opts();
       options.targetDir = targetDir;
-
-      let template = options.template;
-      if (!templates.includes(template)) {
-        logger.error(
-          `invalid template ${template}. Valid: ${JSON.stringify(templates)}`
-        );
-        return;
-      }
-
       await initCommand(options);
     });
   await program.parseAsync(process.argv);

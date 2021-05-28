@@ -5,9 +5,11 @@ import { normalizeOpts } from "../helpers/utils";
 import { createBuildConfig } from "../helpers/createBuildConfig";
 import { rollup, RollupOptions, OutputOptions } from "rollup";
 
-export async function command(commandOptions: any, commandName: string) {
+export async function command(commandOptions: any) {
   try {
-    commandOptions.commandName = commandName;
+    if (commandOptions.debug) {
+      logger.level = "debug";
+    }
     const opts = await normalizeOpts(commandOptions);
     const buildConfigs = await createBuildConfig(opts);
     await cleanDistFolder();
@@ -21,7 +23,7 @@ export async function command(commandOptions: any, commandName: string) {
       )
       .catch((e: any) => {
         throw e;
-      })
+      });
     logger.info("Build component successfully");
     await promise;
   } catch (error) {
