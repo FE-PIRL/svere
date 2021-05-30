@@ -5,6 +5,7 @@ import { command as initCommand } from "./commands/create";
 import { command as buildCommand } from "./commands/build";
 import { command as devCommand } from "./commands/dev";
 import { command as docCommand } from "./commands/doc";
+import { command as testCommand } from "./commands/test";
 const { version } = fs.readJSONSync(paths.appPackageJson);
 
 export async function main() {
@@ -81,6 +82,15 @@ export async function main() {
     .action(async cmd => {
       const options = cmd.opts();
       await docCommand(options);
+    });
+
+  program
+    .command("test")
+    .description("Run cypress and jest test runner")
+    .option("-o, --open", "run cypress open", false)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await testCommand(options);
     });
 
   await program.parseAsync(process.argv);
