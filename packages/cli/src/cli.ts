@@ -4,6 +4,7 @@ import { paths } from "./constants";
 import { command as initCommand } from "./commands/create";
 import { command as buildCommand } from "./commands/build";
 import { command as devCommand } from "./commands/dev";
+import { command as docCommand } from "./commands/doc";
 const { version } = fs.readJSONSync(paths.appPackageJson);
 
 export async function main() {
@@ -34,6 +35,7 @@ export async function main() {
     .option("--format <string>", "specify module format(s)", "umd,esm")
     .option("--transpileOnly", "skip type checking", true)
     .option("-d, --debug", "more debug logging", false)
+    .option("-bsb, --buildStorybook", "build storybook to static files", false)
     .action(async cmd => {
       const options = cmd.opts();
       options.commandName = cmd._name;
@@ -70,5 +72,16 @@ export async function main() {
       options.targetDir = targetDir;
       await initCommand(options);
     });
+
+  program
+    .command("doc")
+    .description("Start storybook for component")
+    .option("-p, --port <number>", "specify port to run storybook", "6006")
+    .option("-b, --build", "build storybook to static files", false)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await docCommand(options);
+    });
+
   await program.parseAsync(process.argv);
 }
