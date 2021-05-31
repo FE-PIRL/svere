@@ -6,6 +6,7 @@ import { command as buildCommand } from "./commands/build";
 import { command as devCommand } from "./commands/dev";
 import { command as docCommand } from "./commands/doc";
 import { command as testCommand } from "./commands/test";
+import { command as lintCommand } from "./commands/lint";
 const { version } = fs.readJSONSync(paths.appPackageJson);
 
 export async function main() {
@@ -91,6 +92,18 @@ export async function main() {
     .action(async cmd => {
       const options = cmd.opts();
       await testCommand(options);
+    });
+
+  program
+    .command("lint")
+    .description("Run eslint and stylelint with prettier")
+    .option("-a, --all", "run eslint、stylelint and prettier", true)
+    .option("-js, --js", "run eslint with prettier", false)
+    .option("-css, --css", "run stylelint with prettier", false)
+    .option("-f, --format", "run prettier only", false)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await lintCommand(options);
     });
 
   await program.parseAsync(process.argv);
