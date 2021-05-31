@@ -51,6 +51,10 @@ export interface NormalizedOpts
 export interface SvereOptions extends SharedOpts {
   // Name of package
   name: string;
+  // Port for dev
+  port: number;
+  // launch browser automatically
+  open: boolean;
   // path to file
   input: string;
   // Environment

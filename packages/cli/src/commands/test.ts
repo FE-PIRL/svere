@@ -18,7 +18,7 @@ export async function command(commandOptions: any) {
         [
           "start-server-and-test",
           "start",
-          "http://localhost:5000",
+          `http://0.0.0.0:${commandOptions.port}`,
           "cypress run"
         ],
         {

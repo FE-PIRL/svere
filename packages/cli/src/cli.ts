@@ -50,7 +50,8 @@ export async function main() {
     .description("start development server")
     .option("--entry <string>", "specify entry file for dev", "src/main.ts")
     .option("-d, --debug", "more debug logging", false)
-    .option("-o, --open", "open the browser for dev", true)
+    .option("-o, --open", "open the browser for dev", false)
+    .option("-p, --port <number>", "specify port for dev", "5000")
     .action(async cmd => {
       const options = cmd.opts();
       options.commandName = cmd._name;
@@ -90,6 +91,7 @@ export async function main() {
     .command("test")
     .description("Run cypress and jest test runner")
     .option("-o, --open", "run cypress open", false)
+    .option("-p, --port <number>", "specify port for test", "5000")
     .action(async cmd => {
       const options = cmd.opts();
       await testCommand(options);

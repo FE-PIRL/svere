@@ -58,16 +58,22 @@ export async function createRollupConfig(
     return {
       async writeBundle() {
         if (server) return;
-        server = spawn("npx", ["sirv public", "--host", "--dev"], {
-          stdio: ["ignore", "inherit", "inherit"],
-          shell: true
-        });
-        setTimeout(() => {
-          spawn("open", ["http://0.0.0.0:5000"], {
+        server = spawn(
+          "npx",
+          ["sirv public", "--host", "--dev", "--port", `${opts.port}`],
+          {
             stdio: ["ignore", "inherit", "inherit"],
             shell: true
-          });
-        }, 500);
+          }
+        );
+        if (opts.open) {
+          setTimeout(() => {
+            spawn("open", [`http://0.0.0.0:${opts.port}`], {
+              stdio: ["ignore", "inherit", "inherit"],
+              shell: true
+            });
+          }, 500);
+        }
         process.on("SIGTERM", toExit);
         process.on("exit", toExit);
       }
