@@ -1,5 +1,6 @@
 import * as colors from "kleur/colors";
 import { LoggerLevel, LoggerEvent, LoggerOptions } from "../types";
+import { appName } from "../constants";
 
 export interface LogRecord {
   val: string;
@@ -83,25 +84,25 @@ class Logger {
 
   /** emit messages only visible when --debug is passed */
   public debug(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "svere";
+    const name = (options && options.name) || appName;
     this.log({ level: "debug", name, message, task: options?.task });
   }
 
   /** emit general info */
   public info(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "svere";
+    const name = (options && options.name) || appName;
     this.log({ level: "info", name, message, task: options?.task });
   }
 
   /** emit non-fatal warnings */
   public warn(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "svere";
+    const name = (options && options.name) || appName;
     this.log({ level: "warn", name, message, task: options?.task });
   }
 
   /** emit critical error messages */
   public error(message: string, options?: LoggerOptions): void {
-    const name = (options && options.name) || "svere";
+    const name = (options && options.name) || appName;
     this.log({ level: "error", name, message, task: options?.task });
   }
 
