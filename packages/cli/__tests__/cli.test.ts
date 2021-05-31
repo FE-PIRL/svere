@@ -69,6 +69,6 @@ test("start dev server", async () => {
   jest.setTimeout(80 * 1000);
 
   // assume you had run test case above and executed npm install
-  const devServer = await cli(["dev -d"], "./test-install");
+  const devServer = await cli(["start -d"], "./test-install");
   console.log(devServer);
 });

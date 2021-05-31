@@ -74,7 +74,7 @@ async function getInputs(
 }
 
 export async function normalizeOpts(opts: WatchOpts): Promise<NormalizedOpts> {
-  if (opts.commandName === "dev") {
+  if (opts.commandName === "start") {
     return {
       ...opts,
       name: "bundle",

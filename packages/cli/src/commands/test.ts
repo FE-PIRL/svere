@@ -17,7 +17,7 @@ export async function command(commandOptions: any) {
         "npx",
         [
           "start-server-and-test",
-          "dev",
+          "start",
           "http://localhost:5000",
           "cypress run"
         ],

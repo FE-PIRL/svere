@@ -3,11 +3,18 @@ import { logger } from "../helpers/logger";
 import { normalizeOpts } from "../helpers/utils";
 import { createBuildConfig } from "../helpers/createBuildConfig";
 import { watch, RollupOptions, OutputOptions } from "rollup";
+import * as fs from "fs-extra";
+import { paths } from "../constants";
 
 export async function command(commandOptions: any) {
   try {
     if (commandOptions.debug) {
       logger.level = "debug";
+    }
+
+    const appPublicExist = fs.existsSync(paths.appPublic);
+    if (!appPublicExist) {
+      throw Error("Public directory not found, please check your root path");
     }
     const opts = await normalizeOpts(commandOptions);
     const buildConfigs = await createBuildConfig(opts);

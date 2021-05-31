@@ -16,6 +16,7 @@ import svelte from "rollup-plugin-svelte";
 import { scss } from "svelte-preprocess";
 import livereload from "rollup-plugin-livereload";
 import css from "rollup-plugin-css-only";
+import { spawn } from "child_process";
 
 export async function createRollupConfig(
   opts: SvereOptions,
@@ -25,7 +26,7 @@ export async function createRollupConfig(
     opts.minify !== undefined ? opts.minify : opts.env === "production";
 
   const outputName =
-    opts.commandName === "dev"
+    opts.commandName === "start"
       ? "public/bundle.js"
       : [
           `${paths.appDist}/${safePackageName(opts.name)}`,
@@ -55,24 +56,26 @@ export async function createRollupConfig(
     }
 
     return {
-      writeBundle() {
+      async writeBundle() {
         if (server) return;
-        server = require("child_process").spawn(
-          "npx",
-          ["sirv public", "--", "--dev"],
-          {
+        server = spawn("npx", ["sirv public", "--host", "--dev"], {
+          stdio: ["ignore", "inherit", "inherit"],
+          shell: true
+        });
+        setTimeout(() => {
+          spawn("open", ["http://0.0.0.0:5000"], {
             stdio: ["ignore", "inherit", "inherit"],
             shell: true
-          }
-        );
+          });
+        }, 500);
         process.on("SIGTERM", toExit);
         process.on("exit", toExit);
       }
     };
   };
 
-  const plugins =
-    opts.commandName === "dev"
+  const plugins = [].concat(
+    opts.commandName === "start"
       ? [
           svelte({
             compilerOptions: {
@@ -181,7 +184,8 @@ export async function createRollupConfig(
               ecma: 5,
               toplevel: opts.format === "umd"
             })
-        ];
+        ]
+  );
 
   return {
     external: ["svelte"],
@@ -203,7 +207,7 @@ export async function createRollupConfig(
       // Respect tsconfig esModuleInterop when setting __esModule.
       esModule: Boolean(tsCompilerOptions?.esModuleInterop),
       name: opts.name || safeVariableName(opts.name),
-      sourcemap: opts.commandName !== "dev",
+      sourcemap: opts.commandName !== "start",
       exports: "named"
     },
     plugins,
