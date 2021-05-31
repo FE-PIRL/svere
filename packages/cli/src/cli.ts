@@ -50,7 +50,7 @@ export async function main() {
     .description("start development server")
     .option("--entry <string>", "specify entry file for dev", "src/main.ts")
     .option("-d, --debug", "more debug logging", false)
-    .option("-o, --open", "open the browser for dev", false)
+    .option("-s, --silent", "never launch the browser", false)
     .option("-p, --port <number>", "specify port for dev", "5000")
     .action(async cmd => {
       const options = cmd.opts();

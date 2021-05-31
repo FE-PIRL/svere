@@ -66,7 +66,7 @@ export async function createRollupConfig(
             shell: true
           }
         );
-        if (opts.open) {
+        if (!opts.silent) {
           setTimeout(() => {
             spawn("open", [`http://0.0.0.0:${opts.port}`], {
               stdio: ["ignore", "inherit", "inherit"],

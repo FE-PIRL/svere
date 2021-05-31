@@ -53,8 +53,8 @@ export interface SvereOptions extends SharedOpts {
   name: string;
   // Port for dev
   port: number;
-  // launch browser automatically
-  open: boolean;
+  // never launch browser automatically
+  silent: boolean;
   // path to file
   input: string;
   // Environment
