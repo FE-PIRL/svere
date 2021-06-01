@@ -10,7 +10,7 @@ export async function command(commandOptions: any) {
       logger.info("Building storybook to static files...");
       const subprocess = execa("npx", ["build-storybook"]);
       subprocess.stdout.pipe(process.stdout);
-      (async () => {
+      await (async () => {
         await subprocess;
         logger.info("Built storybook to static files successfully");
       })();

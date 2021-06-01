@@ -280,7 +280,6 @@ yarn add @svere/core
 
 # 待办
 
-- 开发更多命令行特性: `dev`、`build`(把组件打包成umd格式的单文件).
 - 整合core到cli中.
 - 发布到npm或cdn上.
 - 添加更多特性到core中, 例如: 子组件、插槽.
