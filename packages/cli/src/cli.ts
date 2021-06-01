@@ -78,19 +78,9 @@ export async function main() {
     });
 
   program
-    .command("doc")
-    .description("Start storybook for component")
-    .option("-p, --port <number>", "specify port to run storybook", "6006")
-    .option("-b, --build", "build storybook to static files", false)
-    .action(async cmd => {
-      const options = cmd.opts();
-      await docCommand(options);
-    });
-
-  program
     .command("test")
     .description("Run cypress and jest test runner")
-    .option("-o, --open", "run cypress open", false)
+    .option("-co, --cypressOpen", "run cypress open", false)
     .option("-p, --port <number>", "specify port for test", "5000")
     .action(async cmd => {
       const options = cmd.opts();
@@ -100,13 +90,37 @@ export async function main() {
   program
     .command("lint")
     .description("Run eslint and stylelint with prettier")
-    .option("-a, --all", "run eslint、stylelint and prettier", true)
     .option("-js, --js", "run eslint with prettier", false)
     .option("-css, --css", "run stylelint with prettier", false)
     .option("-f, --format", "run prettier only", false)
+    .option(
+      "-jfs, --jsFiles <string>",
+      "specify files for eslint",
+      "src/**/*.{js,jsx,ts,tsx,svelte}"
+    )
+    .option(
+      "-cfs, --cssFiles <string>",
+      "specify files for stylelint",
+      "src/**/*.{less,postcss,css,scss,svelte}"
+    )
+    .option(
+      "-ffs, --formatFiles <string>",
+      "specify files for prettier",
+      "src/**/*.{js,json,ts,tsx,svelte,css,less,scss,html,md}"
+    )
     .action(async cmd => {
       const options = cmd.opts();
       await lintCommand(options);
+    });
+
+  program
+    .command("doc")
+    .description("Start storybook for component")
+    .option("-p, --port <number>", "specify port to run storybook", "6006")
+    .option("-b, --build", "build storybook to static files", false)
+    .action(async cmd => {
+      const options = cmd.opts();
+      await docCommand(options);
     });
 
   await program.parseAsync(process.argv);
