@@ -90,8 +90,8 @@ export async function main() {
   program
     .command("lint")
     .description("Run eslint and stylelint with prettier")
-    .option("-js, --js", "run eslint with prettier", false)
-    .option("-css, --css", "run stylelint with prettier", false)
+    .option("-js, --js", "run eslint with prettier only", false)
+    .option("-css, --css", "run stylelint with prettier only", false)
     .option("-f, --format", "run prettier only", false)
     .option(
       "-jfs, --jsFiles <string>",

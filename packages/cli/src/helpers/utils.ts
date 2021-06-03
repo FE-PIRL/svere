@@ -6,7 +6,7 @@ import { concatAllArray } from "jpjs";
 import glob from "tiny-glob/sync";
 import { paths } from "../constants";
 import { PackageJson } from "../types";
-import { logger } from "../helpers/logger";
+import { logger } from "./logger";
 
 let appPackageJson: PackageJson;
 
