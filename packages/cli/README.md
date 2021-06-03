@@ -1,8 +1,8 @@
 # SVERE CLI
 
-A CLI for svere. Although you can build your own project to produce target files that meet the requirements, you still have a lot of work to do. Our goal is to help you get rid of the tedious work and let you concentrate on the development of business components. `Svere cli` is a zero-config scaffold, involving life cycles of component such as `development`, `packaging`, `syntax checking`, `testing`, `documentation` and `publishing`, to make you having a relaxed component development experience.
+A CLI for svere. 
 
-<p align="center">
+<p align="left">
   <a href="https://github.com/FE-PIRL/svere/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <a href="https://github.com/FE-PIRL/svere/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@svere/cli"><img alt="Downloads" src="https://img.shields.io/npm/dm/@svere/cli" /></a>
@@ -13,25 +13,28 @@ English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.
 
 ---
 
+- [Intro](#intro)
 - [Features](#features)
 - [Install](#install)
 - [Quick Start](#quick-start)
 - [Customization](#customization)
-- [Testing](#testing)
 - [Publishing](#publishing)
 - [API Reference](#api-reference)
-- [Contributing](#contributing)
 - [Author](#author) 
 - [License](#license) 
 
+# Intro
+
+Although you can build your own project to produce target files that meet the requirements, you still have a lot of work to do. Our goal is to help you get rid of the tedious work and let you concentrate on the development of business components. `Svere cli` is a zero-config scaffold, involving life cycles of component such as `development`, `packaging`, `syntax checking`, `testing`, `documentation` and `publishing`, to make you having a relaxed component development experience.
+
 # Features
 
-* Live reload / watch-mode
+* Live reload and watch mode
 * Works with Typescript
 * Run crypress and Jest via `svere test`
 * ESLint and Stylelint with Prettier via `svere lint`
 * Integrate with Storybook via `svere doc`
-* Escape hatches for customization via `svere.config.js` and `.eslintrc.js`、`.stylelintrc.js`、`.prettierrc.js` and so on.
+* Escape hatches for customization via `svere.config.js` and exported files of [code-specification-unid](https://github.com/FE-PIRL/code-specification-unid)
 
 # Install
 
@@ -93,13 +96,86 @@ You can generate static doc files by runing `svere doc -b`.
 
 # Customization
 
-# Testing
+### Rollup
+
+> **❗⚠️❗ Warning**: <br>
+> These modifications will override the default behavior and configuration of SVERE. As such they can invalidate internal guarantees and assumptions. These types of changes can break internal behavior and can be very fragile against updates. Use with discretion!
+
+SVERE uses Rollup under the hood. The defaults are solid for most packages (Formik uses the defaults!). However, if you do wish to alter the rollup configuration, you can do so by creating a file called `svere.config.js` at the root of your project like so:
+
+```js
+// Not transpiled with TypeScript or Babel, so use plain Es6/Node.js!
+module.exports = {
+  // This function will run for each entry/format/env combination
+  rollup(config, options) {
+    return config; // always return a config.
+  },
+};
+```
+
+The `options` object contains the following:
+
+```tsx
+export interface SvereOptions {
+  // Name of package
+  name: string;
+  // Port for dev
+  port: number;
+  // path to file
+  input: string;
+  // never launch browser automatically
+  silent: boolean;
+  // Module format
+  format: 'cjs' | 'umd' | 'esm' | 'system';
+  // Environment
+  env: 'development' | 'production';
+  // Path to tsconfig file
+  tsconfig?: string;
+  // Is error extraction running?
+  extractErrors?: boolean;
+  // Is minifying?
+  minify?: boolean;
+  // Is this the very first rollup config (and thus should one-off metadata be extracted)?
+  writeMeta?: boolean;
+  // Only transpile, do not type check (makes compilation faster)
+  transpileOnly?: boolean;
+}
+```
+
+#### Example: Adding Postcss
+
+```js
+const postcss = require('rollup-plugin-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+
+module.exports = {
+  rollup(config, options) {
+    config.plugins.push(
+      postcss({
+        plugins: [
+          autoprefixer(),
+          cssnano({
+            preset: 'default',
+          }),
+        ],
+        inject: false,
+        // only write out CSS for the first bundle (avoids pointless extra files):
+        extract: !!options.writeMeta,
+      })
+    );
+    return config;
+  },
+};
+```
+
 
 # Publishing
 
+
 # API Reference
 
-```svere start```
+### ```svere start```
 
 ```bash
 Usage: svere start [options]
@@ -114,7 +190,8 @@ Options:
   -h, --help           display help for command
 ```
 
-```svere build```
+
+### ```svere build```
 
 ```bash
 Usage: svere build [options]
@@ -131,7 +208,8 @@ Options:
   -h, --help              display help for command
 ```
 
-```svere test```
+
+### ```svere test```
 
 ```bash
 Usage: svere test [options]
@@ -144,7 +222,8 @@ Options:
   -h, --help           display help for command
 ```
 
-```svere lint```
+
+### ```svere lint```
 
 ```bash
 Usage: svere lint [options]
@@ -161,7 +240,8 @@ Options:
   -h, --help                    display help for command
 ```
 
-```svere doc```
+
+### ```svere doc```
 
 ```bash
 Usage: svere doc [options]
@@ -174,9 +254,13 @@ Options:
   -h, --help           display help for command
 ```
 
-# Contributing
 # Author
+
+[benyasin](https://github.com/benyasin)
+
 # License
+
+[MIT](https://oss.ninja/mit/jaredpalmer/)
 
 
 # Todos
