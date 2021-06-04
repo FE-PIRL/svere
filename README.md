@@ -13,5 +13,44 @@
 
 ---
 
-- [Adapter](https://github.com/FE-PIRL/svere/blob/master/packages/core/README.md)
-- [CLI](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md)
+Managing support for libraries that provide UI components across frameworks is a pain,
+especially when [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) are not an option (e.g. for server side rendering, best performance, etc).
+
+At present, the [svelte](https://svelte.dev/) framework is developing rapidly.
+It is a good backward compatibility solution to make svelte components run in the old `react` or `vue` project,
+especially when the team's technology stack is not unified, this provides an idea of cross-framework sharing component.
+
+
+# [CORE](https://github.com/FE-PIRL/svere/blob/master/packages/core/README.md)
+
+> ##### Adapters for react、vue2 and vue3
+
+# [CLI](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md)
+
+> ##### An all-in-one cli for quickly create svelte components
+
+
+## How does it work
+
+![design](https://user-images.githubusercontent.com/1866848/120758562-94cf6580-c544-11eb-9782-f13aea85b1fc.png)
+
+`Svere` contains several `adapters` for `React/Vue2/Vue3` which allows you to pass props and respond to events in a way that makes sense for that library.
+Also, it provides a [cli](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md) to quickly create svelte components that can be shared across components.
+
+![core](https://user-images.githubusercontent.com/1866848/120759562-b5e48600-c545-11eb-8ae4-95c901581f7c.png)
+
+Svere use the life cycle hooks of each framework to complete the mounting, updating and uninstalling of svelte components.
+
+## Value and efficacy
+
+1. Increased efficiency
+   
+>   Focus on the writing of business components without caring about the user, which greatly improves the development efficiency
+
+2. Cross-stack reuse
+   
+> Solve the problem of sharing a single component between different technology stacks, and achieve a certain sense of environment independence
+
+3. Visual Unity
+   
+> Only one piece of code is maintained, and the performance of components under different technology stacks can be guaranteed to be consistent
