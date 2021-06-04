@@ -1,4 +1,4 @@
-# SVERE Core
+# SVERE CORE
 
 svere的核心适配器.
 

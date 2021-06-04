@@ -1,6 +1,6 @@
-# SVERE Core
+# SVERE CORE
 
-Adpaters for svere.
+Adapters for svere core.
 
 <p align="center">
   <a href="https://github.com/FE-PIRL/svere/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
