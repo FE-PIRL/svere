@@ -122,7 +122,7 @@ export interface SvereOptions {
   // never launch browser automatically
   silent: boolean;
   // Module format
-  format: 'cjs' | 'umd' | 'esm' | 'system';
+  format: 'umd' | 'esm' | 'iife';
   // Environment
   env: 'development' | 'production';
   // Path to tsconfig file
