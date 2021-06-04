@@ -9,7 +9,7 @@ A CLI for svere.
   <a href="https://www.npmjs.com/package/@svere/cli" rel="nofollow"><img src="https://img.shields.io/npm/v/@svere/cli.svg?sanitize=true"></a>
 </p>
 
-English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.md)
+English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README_ZH.md)
 
 ---
 
@@ -33,7 +33,7 @@ Although you can build your own project to produce target files that meet the re
 * Works with Typescript
 * Run crypress and Jest via `svere test`
 * ESLint and Stylelint with Prettier via `svere lint`
-* Integrate with Storybook via `svere doc`
+* Run storybook via `svere doc`
 * Escape hatches for customization via `svere.config.js` and exported files of [code-specification-unid](https://github.com/FE-PIRL/code-specification-unid)
 
 # Install
@@ -59,7 +59,7 @@ yarn start
 ```
 
 That's it. You don't need to worry about setting up TypeScript or Rollup or Jest or other plumbing. 
-Just start editing src/components/MyComponent.svelte and go!
+Just start editing `src/components/MyComponent.svelte` and go!
 
 Below is a list of commands you will probably find useful:
 
@@ -265,4 +265,4 @@ Options:
 
 # Todos
 
-publish to npm or cdn
+* Add a command to publish the component to npm or cdn

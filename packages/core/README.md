@@ -1,8 +1,6 @@
-<p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
+# SVERE Core
 
-<p align="center">
-  Write components once, run everywhere. Make svelte components run inside React or Vue applications.
-</p>
+Adpaters for svere.
 
 <p align="center">
   <a href="https://github.com/FE-PIRL/svere/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
@@ -11,7 +9,7 @@
   <a href="https://www.npmjs.com/package/@svere/core" rel="nofollow"><img src="https://img.shields.io/npm/v/@svere/core.svg?sanitize=true"></a>
 </p>
 
-English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/README_ZH.md)
+English | [简体中文](https://github.com/FE-PIRL/svere/blob/master/packages/core/README_ZH.md)
 
 ---
 
@@ -35,7 +33,7 @@ It is a good backward compatibility solution to make svelte components run in th
 especially when the team's technology stack is not unified, this provides an idea of cross-framework sharing component.
 
 `Svere` contains several `adapters` for `React/Vue2/Vue3` which allows you to pass props and respond to events in a way that makes sense for that library.
-Also, it provides a `cli` to quickly create svelte components that can be shared across components.
+Also, it provides a [cli](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md) to quickly create svelte components that can be shared across components.
 
 # Install
 
@@ -279,6 +277,4 @@ yarn add @svere/cli
 
 # Todos
 
-- develop cli features: `dev`、`build`(bundle component to single file with umd format).
-- integrate cli with core.
 - develop core to add more features, eg: sub-component, slots.

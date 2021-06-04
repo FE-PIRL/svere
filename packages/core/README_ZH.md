@@ -1,8 +1,6 @@
-<p align="center"><img width="200" alt="svere" src="https://user-images.githubusercontent.com/1866848/118639391-7100e580-b80a-11eb-88e1-4a2b547ad475.png"></p>
+# SVERE Core
 
-<p align="center">
-  一处编写,多处运行. 让Svelte组件跑在React或Vue应用中.
-</p>
+svere的核心适配器.
 
 <p align="center">
   <a href="https://github.com/FE-PIRL/svere/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
@@ -11,7 +9,7 @@
   <a href="https://www.npmjs.com/package/@svere/core" rel="nofollow"><img src="https://img.shields.io/npm/v/@svere/core.svg?sanitize=true"></a>
 </p>
 
-简体中文 | [English](https://github.com/FE-PIRL/svere/blob/master/README.md)
+简体中文 | [English](https://github.com/FE-PIRL/svere/blob/master/packages/core/README.md)
 
 ---
 
@@ -35,7 +33,7 @@
 尤其当团队的技术栈不统一时,这提供了一个跨框架共享组件的思路.
 
 `Svere`包含了几个对`React/Vue2/Vue3`的`适配器`, 允许你使用一种对组件有意义的方式传递参数和响应事件.
-同时，它提供一个`cli`可以用来快速创建可跨框架共享的组件的模板.
+同时，它提供一个[cli](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README_ZH.md) 可以用来快速创建可跨框架共享的组件的模板.
 
 # 安装
 
@@ -280,6 +278,4 @@ yarn add @svere/core
 
 # 待办
 
-- 整合core到cli中.
-- 发布到npm或cdn上.
 - 添加更多特性到core中, 例如: 子组件、插槽.
