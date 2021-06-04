@@ -23,21 +23,21 @@ especially when the team's technology stack is not unified, this provides an ide
 
 # [CORE](https://github.com/FE-PIRL/svere/blob/master/packages/core/README.md)
 
-> ##### Adapters for react、vue2 and vue3
+> #### Adapters for react、vue2 and vue3
 
 # [CLI](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md)
 
-> ##### An all-in-one cli for quickly create svelte components
+> #### An all-in-one cli for quickly create svelte components
 
 
 ## How does it work
 
-![design](https://user-images.githubusercontent.com/1866848/120758562-94cf6580-c544-11eb-9782-f13aea85b1fc.png)
+<img style="width: 80%" src="https://user-images.githubusercontent.com/1866848/120762292-afa3d900-c548-11eb-9602-934730de2623.png">
 
 `Svere` contains several `adapters` for `React/Vue2/Vue3` which allows you to pass props and respond to events in a way that makes sense for that library.
 Also, it provides a [cli](https://github.com/FE-PIRL/svere/blob/master/packages/cli/README.md) to quickly create svelte components that can be shared across components.
 
-![core](https://user-images.githubusercontent.com/1866848/120759562-b5e48600-c545-11eb-8ae4-95c901581f7c.png)
+<img style="width: 80%" src="https://user-images.githubusercontent.com/1866848/120759562-b5e48600-c545-11eb-8ae4-95c901581f7c.png">
 
 Svere use the life cycle hooks of each framework to complete the mounting, updating and uninstalling of svelte components.
 
