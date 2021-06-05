@@ -33,7 +33,7 @@ especially when the team's technology stack is not unified, this provides an ide
 ## How does it work
 
 <p align="center">
-<img style="width: 300px" src="https://user-images.githubusercontent.com/1866848/120762292-afa3d900-c548-11eb-9602-934730de2623.png">
+<img style="width: 300px" src="https://user-images.githubusercontent.com/1866848/120882896-f0fdbc80-c60c-11eb-9992-764f3a3f4310.png">
 </p>
 
 `Svere` contains several `adapters` for `React/Vue2/Vue3` which allows you to pass props and respond to events in a way that makes sense for that library.
