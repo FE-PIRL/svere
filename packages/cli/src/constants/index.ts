@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import path from "path";
 export const appName = "svere";
-export const appDirectory = fs.realpathSync(process.cwd());
+export const appDirectory = fs.realpathSync(path.resolve(__dirname + '../../../'));
 export const resolvePath = function(relativePath: string) {
   return path.resolve(appDirectory, relativePath);
 };
