@@ -1,17 +1,17 @@
 import React, { useRef, useEffect, useState }  from "react";
 import resolveWrapperProps from "../helpers";
 
-export default (Component: any, wrapperProps?: WrapperProps) => (props: {
+export default (Component: SvelteComponentConstructor, _wrapperProps?: WrapperProps) => (props: {
   [x: string]: any;
 }) => {
   const container = useRef<HTMLElement>(null);
-  const component = useRef<HTMLElement | null>(null);
+  const component = useRef<SvelteComponent | null>(null);
 
   const [mounted, setMount] = useState(false);
 
   useEffect(() => {
-    const onRegex = /on([A-Z]{1,}[a-zA-Z]*)/;
-    const watchRegex = /watch([A-Z]{1,}[a-zA-Z]*)/;
+    const onRegex = /on([A-Z]+[a-zA-Z]*)/;
+    const watchRegex = /watch([A-Z]+[a-zA-Z]*)/;
 
     component.current = new Component({ target: container.current, props });
 
@@ -36,15 +36,12 @@ export default (Component: any, wrapperProps?: WrapperProps) => (props: {
     }
 
     if (watchers.length) {
-      const update = ((component.current as unknown) as SvelteComponent)?.$$
-          .update;
-      if (update) {
-        ((component.current as unknown) as SvelteComponent).$$.update = function () {
+      if (component.current?.$$.update) {
+        const update = component.current?.$$.update;
+        component.current.$$.update = function () {
           watchers.forEach(([name, callback]) => {
-            const index = ((component.current as unknown) as SvelteComponent)
-                ?.$$.props[name];
-            const prop = ((component.current as unknown) as SvelteComponent)?.$$
-                .ctx[index];
+            const index = component.current?.$$.props[name];
+            const prop = component.current?.$$.ctx[index];
             prop && callback(prop);
           });
           update.apply(null, arguments);
@@ -52,9 +49,7 @@ export default (Component: any, wrapperProps?: WrapperProps) => (props: {
       }
     }
 
-    return () => {
-      ((component.current as unknown) as SvelteComponent)?.$destroy();
-    };
+    return () => component.current?.$destroy();
   }, []);
 
   useEffect(() => {
@@ -63,15 +58,13 @@ export default (Component: any, wrapperProps?: WrapperProps) => (props: {
       return;
     }
 
-    ((component.current as unknown) as SvelteComponent)?.$set(props);
+    component.current?.$set(props);
   }, [props]);
 
-  wrapperProps = resolveWrapperProps(wrapperProps);
+  const wrapperProps = resolveWrapperProps(_wrapperProps);
 
-  return React.createElement(wrapperProps?.element, {
+  return React.createElement(wrapperProps.element, {
     ref: container,
-    id: wrapperProps?.id,
-    className: wrapperProps?.className,
-    style: { ...wrapperProps?.styles },
+    ...wrapperProps
   });
 };

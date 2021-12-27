@@ -1,18 +1,18 @@
-import { h, defineComponent, ref, onMounted, onUpdated, onDeactivated } from "vue";
+import {defineComponent, h, onDeactivated, onMounted, onUpdated, ref} from "vue";
 import resolveWrapperProps from "../helpers";
 
-export default (Component: any, wrapperProps?: WrapperProps) => {
-    wrapperProps = resolveWrapperProps(wrapperProps);
+export default (Component: SvelteComponentConstructor, _wrapperProps?: WrapperProps) => {
+    const wrapperProps = resolveWrapperProps(_wrapperProps);
 
     return defineComponent({
-        name: wrapperProps.id as string,
+        name: wrapperProps.id,
         setup(props, ctx) {
-            const container = ref(null);
-            const component = ref(null);
+            const container = ref<HTMLElement | null>(null);
+            const component = ref<SvelteComponent | null>(null);
 
             onMounted(() => {
-                const onRegex = /on([A-Z]{1,}[a-zA-Z]*)/;
-                const watchRegex = /watch([A-Z]{1,}[a-zA-Z]*)/;
+                const onRegex = /on([A-Z]+[a-zA-Z]*)/;
+                const watchRegex = /watch([A-Z]+[a-zA-Z]*)/;
 
                 component.value = new Component({
                     target: container.value,
@@ -25,7 +25,7 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
                     const watchMatch = key.match(watchRegex);
 
                     if (onMatch && typeof ctx.attrs[key] === "function") {
-                        ((component.value as unknown) as SvelteComponent)?.$on(
+                        component.value.$on(
                             `${onMatch[1][0].toLowerCase()}${onMatch[1].slice(1)}`,
                             props[key]
                         );
@@ -40,15 +40,12 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
                 }
 
                 if (watchers.length) {
-                    const update = ((component.value as unknown) as SvelteComponent)?.$$
-                        .update;
-                    if (update) {
-                        ((component.value as unknown) as SvelteComponent).$$.update = function () {
+                    if (component.value.$$.update) {
+                        const update = component.value.$$.update;
+                        component.value.$$.update = function () {
                             watchers.forEach(([name, callback]) => {
-                                const index = ((component.value as unknown) as SvelteComponent)
-                                    ?.$$.props[name];
-                                const prop = ((component.value as unknown) as SvelteComponent)
-                                    ?.$$.ctx[index];
+                                const index = component.value.$$.props[name];
+                                const prop = component.value.$$.ctx[index];
                                 prop && callback(prop);
                             });
                             update.apply(null, arguments);
@@ -56,18 +53,12 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
                     }
                 }
 
-                return () => {
-                    ((component.value as unknown) as SvelteComponent)?.$destroy();
-                };
+                return () => component.value.$destroy();
             });
 
-            onUpdated(() => {
-                ((component.value as unknown) as SvelteComponent)?.$set(ctx.attrs);
-            });
+            onUpdated(() => component.value?.$set(ctx.attrs));
 
-            onDeactivated(()=>{
-                ((component.value as unknown) as SvelteComponent)?.$destroy();
-            });
+            onDeactivated(() => component.value?.$destroy());
 
             return {
                 component,
@@ -75,17 +66,13 @@ export default (Component: any, wrapperProps?: WrapperProps) => {
             };
         },
         render() {
-            const childrenDefaults = {
+            const children = {
                 ref: "container",
-                id: wrapperProps?.id,
-                style: { ...wrapperProps?.styles },
+                id: wrapperProps.id,
+                style: {...wrapperProps.styles},
+                class: wrapperProps.className,
             };
-            const children = wrapperProps?.className
-                ? Object.assign({}, childrenDefaults, {
-                    class: wrapperProps?.className,
-                })
-                : childrenDefaults;
-            return h(wrapperProps?.element, children);
+            return h(wrapperProps.element, children);
         },
     });
 };
