@@ -1,6 +1,6 @@
 {
   "name": "@svere/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "svere CLI",
   "types": "build/types/types.d.ts",
   "bin": {
@@ -45,6 +45,7 @@
     "fs-extra": "^9.1.0",
     "gluegun": "latest",
     "jpjs": "^1.2.1",
+    "kleur": "^4.1.1",
     "node-sass": "^6.0.0",
     "ora": "^5.4.0",
     "rollup": "^2.50.0",
@@ -57,8 +58,7 @@
     "svelte": "^3.38.2",
     "svelte-loader": "^3.1.1",
     "svelte-preprocess": "^4.7.3",
-    "tiny-glob": "^0.2.9",
-    "kleur": "^4.1.1"
+    "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.2.9",
