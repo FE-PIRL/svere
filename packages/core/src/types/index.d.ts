@@ -1,26 +1,11 @@
 interface ComponentOptions {
   target: HTMLElement | null;
-  anchor?: HTMLElement | null;
-  props?: {};
-  hydrate?: boolean;
-  intro?: boolean;
+  anchor: HTMLElement | null;
 }
 
-interface SvelteComponent {
-  new (options: ComponentOptions): any;
-  $$: any;
-  // client-side methods
-  $set(props: {}): void;
-  $on(event: string, callback: (event: CustomEvent) => void): void;
-  $destroy(): void;
+type SvelteComponent = import('svelte').SvelteComponent;
 
-  // server-side methods
-  render(props?: {}): {
-    html: string;
-    css: { code: string; map: string | null };
-    head?: string;
-  };
-}
+type SvelteComponentConstructor = new(ComponentOptions) => SvelteComponent;
 
 type WrapperProps = {
   element?: string | FunctionComponent<{}> | ComponentClass<{}, any>;

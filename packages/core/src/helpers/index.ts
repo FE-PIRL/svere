@@ -1,13 +1,6 @@
-const defaultWrapperProps = {
+const resolveWrapperProps = (wrapperProps?: WrapperProps) => ({
     element: "div",
     id: "svelte-wrapper",
-};
-
-const resolveWrapperProps = (wrapperProps?: WrapperProps) => {
-    if (!wrapperProps) {
-        return defaultWrapperProps;
-    } else {
-        return Object.assign({}, defaultWrapperProps, wrapperProps);
-    }
-};
+    ...wrapperProps
+});
 export default resolveWrapperProps
